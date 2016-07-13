@@ -10,6 +10,7 @@ before_build:
  
 build_script:
 - cmd: dotnet restore -v debug
+- cmd: cd src\CoreDataStore.Web
 - cmd: dotnet build
 
 test: off
