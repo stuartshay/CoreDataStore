@@ -9,9 +9,7 @@ install:
 
 
 build_script:
-- cmd: cd src\CoreDataStore.Web
-- cmd: dotnet build
-- cmd: dotnet publish
+- cmd: dotnet publish src\CoreDataStore.Web
 
 
 test_script:
