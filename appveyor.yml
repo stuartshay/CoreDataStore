@@ -6,10 +6,12 @@ branches:
 
 before_build:
 - cmd: >-
- npm install -g npm3
- npm3 install -g typings
+  npm install -g npm3
+  npm3 install -g typings
  
 build_script:
 - cmd: >-
- dotnet restore -v debug
- dotnet build
+  dotnet restore -v debug
+  dotnet build
+
+test: off
