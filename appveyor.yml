@@ -1,18 +1,15 @@
 version: '1.0.{build}'
 
-
 branches:  
-  only:
+ only:
   - core-net-1-0
 
 before_build:
+- cmd: >-
  npm install -g npm3
  npm3 install -g typings
  
-build:
- DOTNET restore
- cd src\CoreDataStore.Web\
- DOTNET build
-
-
-test: off 
+build_script:
+- cmd: >-
+ dotnet restore -v debug
+ dotnet build
