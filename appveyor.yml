@@ -5,12 +5,12 @@ branches:
   - core-net-1-0
 
 before_build:
-- cmd: >-
+- cmd:
   npm install -g npm3
   npm3 install -g typings
  
 build_script:
-- cmd: >-
+- cmd:
   dotnet restore -v debug
   dotnet build
 
