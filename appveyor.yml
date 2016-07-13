@@ -5,13 +5,11 @@ branches:
   - core-net-1-0
 
 before_build:
-- cmd:
-  npm install -g npm3
-  npm3 install -g typings
+- cmd: npm install -g npm3
+- cmd: npm3 install -g typings
  
 build_script:
-- cmd:
-  dotnet restore -v debug
-  dotnet build
+- cmd: dotnet restore -v debug
+- cmd: dotnet build
 
 test: off
