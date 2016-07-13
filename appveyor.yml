@@ -7,11 +7,21 @@ branches:
 install:
 - cmd: npm install -g npm3
 - cmd: npm3 install -g typings
+- cmd: dotnet restore
+
  
 build_script:
-- cmd: dotnet restore
 - cmd: cd src\CoreDataStore.Web
 - cmd: dotnet build
 - cmd: dotnet publish
 
-test: off
+test:
+  assemblies:
+    - '**\*.test.dll'
+
+before_test:
+- cmd: cd test
+- cmd: dotnet build
+
+test_script:
+- cmd: xunit.console <assembly> /appveyor
