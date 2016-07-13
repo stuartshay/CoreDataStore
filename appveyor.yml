@@ -5,23 +5,18 @@ branches:
   - core-net-1-0
 
 install:
-- cmd: npm install -g npm3
-- cmd: npm3 install -g typings
 - cmd: dotnet restore
 
- 
+
 build_script:
 - cmd: cd src\CoreDataStore.Web
 - cmd: dotnet build
 - cmd: dotnet publish
 
-test:
-  assemblies:
-    - '**\*.test.dll'
-
-before_test:
-- cmd: cd test
-- cmd: dotnet build
 
 test_script:
-- cmd: xunit.console <assembly> /appveyor
+- ps: foreach ($d in dir .\test |? {$_.PSIsContainer -eq $True}){ &"dotnet" "test" $d.FullName }
+
+
+artifacts:
+  path: src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
