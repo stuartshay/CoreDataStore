@@ -9,7 +9,7 @@ before_build:
 - cmd: npm3 install -g typings
  
 build_script:
-- cmd: dotnet restore -v debug
+- cmd: dotnet restore
 - cmd: cd src\CoreDataStore.Web
 - cmd: dotnet build
 
