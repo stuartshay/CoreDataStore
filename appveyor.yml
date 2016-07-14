@@ -5,7 +5,7 @@ branches:
   - core-net-1-0
 
 install:
-- cmd: dotnet restore
+- cmd: dotnet restore -v warning
 
 
 build_script:
@@ -17,4 +17,4 @@ test_script:
 
 
 artifacts:
-  path: src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
+  path: .\src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish
