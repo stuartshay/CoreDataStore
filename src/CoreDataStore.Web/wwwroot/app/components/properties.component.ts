@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 //import { Observable } from 'rxjs/Observable';
-import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+//import { PAGINATION_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { DataService } from '../services/data.service';
 import { FilterTextboxComponent } from './filterTextbox.component';
@@ -15,7 +15,8 @@ import { IProperty } from '../interfaces';
     selector: 'properties',
     templateUrl: 'properties.component.html',
     directives: [
-        PAGINATION_DIRECTIVES, ROUTER_DIRECTIVES, PropertiesListComponent, FilterTextboxComponent,
+        //PAGINATION_DIRECTIVES, 
+        ROUTER_DIRECTIVES, PropertiesListComponent, FilterTextboxComponent,
         FilterSelectboxComponent
         /*CustomersCardComponent, CustomersGridComponent*/
     ],

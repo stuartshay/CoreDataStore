@@ -1,2 +1,0 @@
-typescript compiler gives error in /npm_modules or /lib - find the library and rename tsconfig.json to _tsconfig.json
-

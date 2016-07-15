@@ -21,16 +21,16 @@
                             </a>
                         </li-->
                     </ul>
-                    <filter-selectbox class="navbar-left" [items]="boroughs" label="Borough"
+                    <!--<filter-selectbox class="navbar-left" [items]="boroughs" label="Borough"-->
                      (changed)="boroughChanged($event)"></filter-selectbox>
                     <div class="navbar-left">&nbsp;&nbsp;&nbsp;&nbsp;</div>
-                    <filter-selectbox class="navbar-left" [items]="objectTypes" label="Type"
-                     (changed)="objectTypeChanged($event)"></filter-selectbox>
+                    <!--<filter-selectbox class="navbar-left" [items]="objectTypes" label="Type"
+                     (changed)="objectTypeChanged($event)"></filter-selectbox>-->
                 </div>
             </div>
         </div>
 
-        <pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
+        <!--<pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>-->
         
         <properties-list [properties]="filteredProperties"></properties-list>
         <!--customers-card 
@@ -41,6 +41,6 @@
           [customers]="filteredCustomers" 
           [hidden]="displayMode !== displayModeEnum.Grid"></customers-grid-->
 
-        <pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>
+        <!--<pagination [totalItems]="totalItems" [(ngModel)]="page" (pageChanged)="pageChanged($event)"></pagination>-->
     </div>
 </div>

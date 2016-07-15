@@ -1,6 +1,6 @@
-import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, Routes} from "@angular/router";
-import { Component } from "@angular/core";
-import {AlertComponent} from "ng2-bootstrap/ng2-bootstrap";
+import {ROUTER_DIRECTIVES, RouterConfig } from "@angular/router";
+import {Component } from "@angular/core";
+
 
 import { PropertiesComponent } from './components/properties.component';
 
@@ -19,31 +19,13 @@ const APP_PROVIDERS = [
     DataService,
     TrackByService,
     FORM_PROVIDERS,
-    HTTP_PROVIDERS,
-    //bind(LocationStrategy).toClass(HashLocationStrategy)
+    HTTP_PROVIDERS    
 ];
 
 @Component({
   	selector:'second',
   	template: `<h1>second</h1>`
 })
-
-export class SecondComponent{}
-
-
-@Component({
-   	selector: 'home',
-	directives: [AlertComponent],
-	template: `
-		<alert type="info">ng2-bootstrap hello world!</alert>
-		<h1>My First Angular 2 App</h1>
-	`
-})
-
-export class HomeComponent{}
-
-
-
 
 @Component({
 	selector: 'my-app',
@@ -75,11 +57,11 @@ export class HomeComponent{}
 	`
 })
 
-@Routes([
-	{path :'/', component: PropertiesComponent},
-   	{path :'/second', component : SecondComponent}
+// @Routes([
+// 	{path :'/', component: PropertiesComponent},
+//    	{path :'/second', component : SecondComponent}
 
-])
+// ])
 
 export class AppComponent { }
 

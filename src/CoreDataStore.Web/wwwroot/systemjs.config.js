@@ -1,54 +1,51 @@
+/**
+ * System configuration for Angular 2 samples
+ * Adjust as necessary for your application needs.
+ */
 (function(global) {
   // map tells the System loader where to look for things
   var map = {
     'app':                        'app', // 'dist',
-    'rxjs':                       'node_modules/rxjs',
-    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     '@angular':                   'node_modules/@angular',
-    "@angular/core/src/facade/lang": "node_modules/@angular/core/src/facade/lang.js",
-    'ng2-select': 'node_modules/ng2-select',
-    'ng2-bootstrap': 'node_modules/ng2-bootstrap',
-    'ng2-pagination': 'node_modules/ng2-pagination',
-    'moment': 'node_modules/moment/moment.js'
+    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
+    'rxjs':                       'node_modules/rxjs',
+   // 'ng2-select':                 'node_modules/ng2-select',
+    //'ng2-bootstrap':              'node_modules/ng2-bootstrap',
+   // 'ng2-pagination':             'node_modules/ng2-pagination'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app':                        { main: 'main.js',  defaultExtension: 'js' },
-    'rxjs':                       { main: 'bundles/Rx.umd.js', defaultExtension: 'js' },
-    'angular2-in-memory-web-api': { defaultExtension: 'js' },
-    'ng2-select': { main: 'ng2-select.js', defaultExtension: 'js' },
-    'ng2-bootstrap': { main: 'ng2-bootstrap.js', defaultExtension: 'js' },
-    'ng2-pagination': { main: 'index.js', defaultExtension: 'js' },
+    'rxjs':                       { defaultExtension: 'js' },
+    'angular2-in-memory-web-api': { main: 'index.js', defaultExtension: 'js' },
   };
-  var packageNames = [
-    '@angular/common',
-    '@angular/compiler',
-    '@angular/core',
-    '@angular/http',
-    '@angular/platform-browser',
-    '@angular/platform-browser-dynamic',
-    '@angular/router',
-    '@angular/router-deprecated',
-    '@angular/testing',
-    '@angular/upgrade',
+  var ngPackageNames = [
+    'common',
+    'compiler',
+    'core',
+    'forms',
+    'http',
+    'platform-browser',
+    'platform-browser-dynamic',
+    'router',
+    'router-deprecated',
+    'upgrade',
   ];
-  // add package entries for angular packages in the form '@angular/common': { main: 'index.js', defaultExtension: 'js' }
-  packageNames.forEach(function(pkgName) {
-    packages[pkgName] = { main: 'index.js', defaultExtension: 'js' };
-  });
-  packages['@angular/common']['main'] = 'common.umd.js';
-  packages['@angular/compiler']['main'] = 'compiler.umd.js';
-  packages['@angular/core']['main'] = 'core.umd.js';
-  packages['@angular/http']['main'] = 'http.umd.js';
-  packages['@angular/platform-browser']['main'] = 'platform-browser.umd.js';
-  packages['@angular/platform-browser-dynamic']['main'] = 'platform-browser-dynamic.umd.js';
-  packages['@angular/router']['main'] = 'router.umd.js';
-  packages['@angular/router-deprecated']['main'] = 'router-deprecated.umd.js';
-  packages['@angular/testing']['main'] = 'testing.umd.js';
-  packages['@angular/upgrade']['main'] = 'upgrade.umd.js';
+  // Individual files (~300 requests):
+  function packIndex(pkgName) {
+    packages['@angular/'+pkgName] = { main: 'index.js', defaultExtension: 'js' };
+  }
+  // Bundled (~40 requests):
+  function packUmd(pkgName) {
+    packages['@angular/'+pkgName] = { main: '/bundles/' + pkgName + '.umd.js', defaultExtension: 'js' };
+  }
+  // Most environments should use UMD; some (Karma) need the individual index files
+  var setPackageConfig = System.packageWithIndex ? packIndex : packUmd;
+  // Add package entries for angular packages
+  ngPackageNames.forEach(setPackageConfig);
   var config = {
     map: map,
     packages: packages
-  }
+  };
   System.config(config);
 })(this);
