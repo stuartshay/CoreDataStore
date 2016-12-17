@@ -1,15 +1,13 @@
-<div *ngIf="details" class="details_wrapper">
-  <table class="">
-    <tr>
-      <td style="width:200px">
-        <div class="details_image_wrapper">
-          <img src="{{ details.photoURL }}" />
-        </div>
-      </td>
-      <td>
-        <form class="property-details-form" novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-          <table class="table table-striped table-hover property-details" style="display: inline-table">
+<div class="page">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div *ngIf="details" class="table-responsive">
+        <form novalidate [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+          <table class="table property-details">
             <tr>
+              <td rowspan="8">
+                <img class="img-thumbnail img-responsive" src="{{ details.photoURL }}" />
+              </td>
               <td>Designation Report:</td>
               <td [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
                 <input type="text" class="form-control" [formControl]="name" />
@@ -65,12 +63,16 @@
                 </select>
                 <span *ngIf="!borough.valid && borough.touched && borough.errors.required" class="help-block sub-little-text">Borough should not be empty!</span>
               </td>
+            </tr>
+            <tr>
+              <td></td>
               <td>
+                <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+              </td>
             </tr>
           </table>
-          <button class="btn btn-success btn-lg" type="submit" [disabled]="!form.valid">Submit</button>
         </form>
-        </td>
-    </tr>
-  </table>
+      </div>
+    </div>
+  </div>
 </div>

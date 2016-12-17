@@ -8,7 +8,6 @@
 @import "../../node_modules/simple-line-icons/scss/simple-line-icons.scss";
 @import "../../node_modules/font-awesome/scss/font-awesome.scss";
 @import "toaster";
-
 .img100 {
   width: 100px;
   height: 75px;
@@ -32,5 +31,14 @@
         width: 220px;
       }
     }
+  }
+}
+
+.page {
+  .panel-body {
+    margin-top: 0;
+  }
+  .breadcrumb {
+    margin-bottom: 0;
   }
 }

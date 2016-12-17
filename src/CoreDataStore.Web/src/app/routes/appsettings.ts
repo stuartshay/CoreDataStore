@@ -7,15 +7,15 @@ export class AppSettings {
     return "Dev";
   }
   public static get ApiEndpoint(): string {
-    return "/api/";
+    return "http://informationcart.eastus2.cloudapp.azure.com:80/api/";
   }
   public static get ApiMaps(): string {
     return "http://informationcart.eastus2.cloudapp.azure.com:82/api/";
   }
   public static get ApiReports(): string {
-    return "/api/reports";
+    return "http://informationcart.eastus2.cloudapp.azure.com:84/api/";
   }
   public static get ApiAttraction(): string {
-    return "/api/attraction";
+    return "http://informationcart.eastus2.cloudapp.azure.com:83/api/";
   }
 }

@@ -5,6 +5,7 @@ import { DndModule } from 'ng2-dnd';
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 import { AgmCoreModule } from 'angular2-google-maps';
 import { SelectModule } from 'ng2-select/ng2-select';
+import { Ng2TableModule } from 'ng2-table/ng2-table';
 
 import { MenuService } from '../core/menu/menu.service';
 
@@ -30,6 +31,7 @@ import appRoutes from './routes';
 @NgModule({
   imports: [
     SharedModule,
+    Ng2TableModule,
     SelectModule,
     DndModule.forRoot(),
     InfiniteScrollModule,
@@ -54,6 +56,7 @@ import appRoutes from './routes';
   exports: [
     RouterModule,
     DndModule,
+    Ng2TableModule,
     AgmCoreModule,
     InfiniteScrollModule,
     HomeComponent,

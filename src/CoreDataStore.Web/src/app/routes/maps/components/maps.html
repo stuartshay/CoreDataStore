@@ -13,10 +13,14 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-              <sebm-google-map [latitude]="markers[0].lat" [longitude]="markers[0].lng" [zoom]="zoom" [scrollwheel]="scrollwheel" class="gmap">
-                <sebm-google-map-marker *ngFor="let m of markers;" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
-                </sebm-google-map-marker>
-              </sebm-google-map>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <sebm-google-map [latitude]="markers[0].lat" [longitude]="markers[0].lng" [zoom]="zoom" [scrollwheel]="scrollwheel" class="gmap">
+                    <sebm-google-map-marker *ngFor="let m of markers;" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
+                    </sebm-google-map-marker>
+                  </sebm-google-map>
+                </div>
+              </div>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
               <div *ngFor="let p of features; let i=index" class="row">

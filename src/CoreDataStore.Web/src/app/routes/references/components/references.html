@@ -1,40 +1,42 @@
-<div class="content-heading">
-  LPC Reports
-</div>
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <li>
-      <a [routerLink]="['/']"><i class="icon-home"></i> Home</a>
-    </li>
-    <li class="active"><a [routerLink]="['/references']" asp-controller="References">{{title}}</a></li>
-  </ol>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <filter-selectbox class="navbar-left" [items]="boroughs" label="Borough" (changed)="boroughChanged($event)"></filter-selectbox>
-      </div>
-      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <filter-selectbox class="navbar-left" [items]="objectTypes" label="Type" (changed)="objectTypeChanged($event)"></filter-selectbox>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <references-list [properties]="filteredReference"></references-list>
-      </div>
-    </div>
-    <div class="table-footer" ng-show="items.total > 0">
+<div class="page">
+  <div class="content-heading">
+    LPC Reports
+  </div>
+  <div class="panel panel-default">
+    <ol class="breadcrumb">
+      <li>
+        <a [routerLink]="['/']"><i class="icon-home"></i> Home</a>
+      </li>
+      <li class="active"><a [routerLink]="['/references']" asp-controller="References">{{title}}</a></li>
+    </ol>
+    <div class="panel-body">
       <div class="row">
-        <div class="col-md-6 col-sm-6 page-num-info">
-          <div class="inline">
-            {{fromItem}}-{{toItem}} of {{ totalItems }} items
-            <select [ngModel]="limit" (ngModelChange)="perPageChanged($event)">
-              <option [value]="p" *ngFor="let p of perPage">{{p}}</option>
-            </select>
-            per page
-          </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <filter-selectbox class="navbar-left" [items]="boroughs" label="Borough" (changed)="boroughChanged($event)"></filter-selectbox>
         </div>
-        <div class="col-md-6 col-sm-6 text-right pagination-container">
-          <pagination [totalItems]="totalItems" [maxSize]="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <filter-selectbox class="navbar-left" [items]="objectTypes" label="Type" (changed)="objectTypeChanged($event)"></filter-selectbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <references-list [properties]="filteredReference"></references-list>
+        </div>
+      </div>
+      <div class="table-footer" ng-show="items.total > 0">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 page-num-info">
+            <div class="inline">
+              {{fromItem}}-{{toItem}} of {{ totalItems }} items
+              <select [ngModel]="limit" (ngModelChange)="perPageChanged($event)">
+                <option [value]="p" *ngFor="let p of perPage">{{p}}</option>
+              </select>
+              per page
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 text-right pagination-container">
+            <pagination [totalItems]="totalItems" [maxSize]="5" [(ngModel)]="page" (pageChanged)="pageChanged($event)" class="pagination-sm"></pagination>
+          </div>
         </div>
       </div>
     </div>

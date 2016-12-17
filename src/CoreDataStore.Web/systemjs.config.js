@@ -33,6 +33,7 @@
       'angular2-toaster': 'libs:angular2-toaster',
       'angular2-google-maps': 'libs:angular2-google-maps/core/index.js',
       'ng2-bootstrap': 'libs:ng2-bootstrap',
+      'ng2-table': 'libs:ng2-table',
       'ng2-select': 'libs:ng2-select'
 
     },

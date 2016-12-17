@@ -5,7 +5,8 @@
 [![Code Climate](https://codeclimate.com/github/stuartshay/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/stuartshay/CoreDataStore)
 
 #### Demo
-http://informationcart.eastus2.cloudapp.azure.com   
+http://informationcart.eastus2.cloudapp.azure.com    
+http://stuartshay.github.io/CoreDataStore/
 
 ## Prerequisites:
 

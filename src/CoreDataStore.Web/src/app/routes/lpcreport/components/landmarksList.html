@@ -1,38 +1,16 @@
-<div *ngIf="landmarks" class="landmarks_wrapper">
-  <table class="" style="width:100%;">
-    <tr>
-      <td>
-        <table class="table table-striped table-hover table-bordered landmark-details" style="width:100%;">
-          <thead>
-            <tr>
-              <td>Id</td>
-              <td>BLL</td>
-              <td>BIN_NUMBER</td>
-              <td>BoroughID</td>
-              <td>BLOCK</td>
-              <td>LOT</td>
-              <td>LP_NUMBER</td>
-              <td>LM_NAME</td>
-              <td>PLUTO_ADDR</td>
-              <td>DESIG_ADDR</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let landmark of landmarks; trackBy: id">
-              <td>{{ landmark.id }}</td>
-              <td>{{ landmark.bbl }}</td>
-              <td>{{ landmark.binNumber }}</td>
-              <td>{{ landmark.boroughId }}</td>
-              <td>{{ landmark.block }}</td>
-              <td>{{ landmark.lot }}</td>
-              <td>{{ landmark.lpNumber }}</td>
-              <td>{{ landmark.name }}</td>
-              <td>{{ landmark.plutoAddress }}</td>
-              <td>{{ landmark.designatedAddress }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
+<ng-table [config]="config"
+          (tableChanged)="onChangeTable(config)"
+          (cellClicked)="onCellClick($event)"
+          [rows]="rows" [columns]="columns">
+</ng-table>
+<pagination *ngIf="config.paging"
+            class="pagination-sm"
+            [(ngModel)]="page"
+            [totalItems]="length"
+            [itemsPerPage]="itemsPerPage"
+            [maxSize]="maxSize"
+            [boundaryLinks]="true"
+            [rotate]="false"
+            (pageChanged)="onChangeTable(config, $event)"
+            (numPages)="numPages = $event">
+</pagination>
