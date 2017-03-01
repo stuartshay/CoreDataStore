@@ -18,8 +18,12 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="panel panel-default">
             <div class="panel-body">
-              <sebm-google-map [latitude]="latitude" [longitude]="longitude" [zoom]="14" [scrollwheel]="true" class="gmap">
-                <sebm-google-map-marker [latitude]="latitude" [longitude]="longitude">
+              <sebm-google-map *ngIf="mapMarkers.length" [latitude]="mapMarkers[0]?.latitude" [longitude]="mapMarkers[0]?.longitude" [zoom]="14" [scrollwheel]="true" class="gmap">
+                <sebm-google-map-marker  *ngFor="let marker of mapMarkers" [latitude]="marker.latitude" [longitude]="marker.longitude" [openInfoWindow]="true">
+                  <sebm-google-map-info-window>
+                    <div>Address: {{marker.address}}</div>
+                    <div>Owner: {{marker.ownerName}}</div>
+                  </sebm-google-map-info-window>
                 </sebm-google-map-marker>
               </sebm-google-map>
             </div>
