@@ -26,7 +26,8 @@
     "Navigator.Common": "1.0.1.3",
     "FluentAssertions": "4.19.0",
     "xunit": "2.2.0",
-    "xunit.runner.visualstudio": "2.2.0"
+    "xunit.runner.visualstudio": "2.2.0",
+    "Microsoft.DotNet.InternalAbstractions": "1.0.500-preview2-1-003177"
   },
   "frameworks": {
     "netcoreapp1.1": {
