@@ -16,7 +16,7 @@ RUN apt-get install -y nodejs
 RUN npm install -g npm3
 
 COPY src /app
-
+COPY NuGet.config /app/NuGet.config
 WORKDIR /app
 
 RUN dotnet restore
