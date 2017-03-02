@@ -24,10 +24,6 @@ namespace CoreDataStore.Service.Models
 
         public DateTime DateDesignated { get; set; }
 
-        public double Latitude => 40.7828647 + (this.Id * .0001);
-
-        public double Longitude => -73.9653551 + (this.Id * .0001);
-
         public bool PhotoStatus { get; set; }
 
         public string PhotoURL { get; set; }

@@ -10,8 +10,8 @@
     "NETStandard.Library": "1.6.1"
   },
 
- "frameworks": {
-    "netcoreapp1.0": {
+  "frameworks": {
+    "netcoreapp1.1": {
       "imports": [
         "dotnet5.6",
         "dnxcore50",

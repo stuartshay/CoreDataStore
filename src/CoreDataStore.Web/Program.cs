@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Web
 {
@@ -27,9 +28,13 @@ namespace CoreDataStore.Web
             var env = config["ASPNETCORE_ENVIRONMENT"] ?? "Development";
             var connectionPostgreSql = config["CONNECTION_PostgreSQL"];
 
-            Console.WriteLine("ASPNETCORE_URLS:{0}", url);
-            Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", env);
-            Console.WriteLine("CONNECTION_PostgreSQL:{0}", connectionPostgreSql);
+            using (ConsoleColorContext.Create())
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("ASPNETCORE_URLS:{0}", url);
+                Console.WriteLine("ASPNETCORE_ENVIRONMENT:{0}", env);
+                Console.WriteLine("CONNECTION_PostgreSQL:{0}", connectionPostgreSql);
+            }
 
             var host = new WebHostBuilder()
                 .UseConfiguration(config)

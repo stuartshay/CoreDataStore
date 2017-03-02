@@ -17,6 +17,7 @@ using Swashbuckle.Swagger.Model;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
+using Navigator.Middleware.HttpHeaders;
 
 namespace CoreDataStore.Web
 {
@@ -217,6 +218,7 @@ namespace CoreDataStore.Web
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
+            app.UseResponseHeaderMiddleware();
             app.UseMvc(ConfigureRoutes);
 
             app.UseSwagger();  
