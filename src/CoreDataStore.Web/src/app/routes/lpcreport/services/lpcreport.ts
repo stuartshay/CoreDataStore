@@ -28,7 +28,12 @@ export class LPCReportService {
       params.set('ObjectType', objectType);
     }
     return this.http.get(`${AppSettings.ApiEndpoint}LPCReport/${limit}/${page}`, { search: params })
-      .map((res: Response) => res.json());
+      .map((res: Response) => {
+        return {
+          total: parseInt(res.headers.get('x-inlinecount'), 10),
+          reports: res.json()
+        };
+      });
   };
 
 

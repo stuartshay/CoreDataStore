@@ -55,22 +55,18 @@ export class ReferencesComponent implements OnInit {
 
   getLPCReports(page, limit, borough, objectType) {
     this.lpcReportService.getLPCReports(page, limit, borough, objectType).subscribe(
-      data => { this.properties = this.filteredReference = data; },
-      () => console.log('done loading getLPCReports')
-    );
+        data => {
+          this.properties = this.filteredReference = data.reports;
+          this.totalItems = data.total;
 
-    let total = 1622; // will fix later 
-    // subscribe((res) => {
-    //   let headers = res.headers._headersMap;
-    //   let total = headers.get('X-InlineCount');
-    //   console.log(res);
-    // });
-    this.objectType = objectType;
-    this.borough = borough;
-    this.page = page;
-    this.totalItems = total;
-    this.fromItem = ((page - 1) * limit) + 1;
-    this.toItem = (total < (page * limit)) ? total : (page * limit);
+          this.objectType = objectType;
+          this.borough = borough;
+          this.page = page;
+          this.fromItem = ((page - 1) * limit) + 1;
+          this.toItem = (this.totalItems  < (page * limit)) ? this.totalItems  : (page * limit);
+        },
+        () => console.log('done loading getLPCReports')
+    );
   }
 
   getObjectTypes() {
