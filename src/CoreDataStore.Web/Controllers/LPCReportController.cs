@@ -103,6 +103,7 @@ namespace CoreDataStore.Web.Controllers
 
             var records = _lpcReportService.GetLPCReports(request);
             totalRecords = records.Total;
+            HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
             return records.Results;
         }
@@ -132,6 +133,7 @@ namespace CoreDataStore.Web.Controllers
 
             var records = _landmarkService.GetLandmarks(request);
             totalRecords = records.Total;
+            HttpContext.Response.Headers.Add("Access-Control-Expose-Headers", "X-InlineCount");
             HttpContext.Response.Headers.Add("X-InlineCount", totalRecords.ToString());
             return records.Results;
         }

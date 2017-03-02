@@ -5,7 +5,7 @@
     "AutoMapper": "5.2.0",
     "CoreDataStore.Data.Sqlite": "1.0.1-*",
     "CoreDataStore.Domain": "1.0.1-*",
-    "FluentValidation": "6.4.0-beta9",
+    "FluentValidation": "6.4.0-rc4",
     "Microsoft.Extensions.Logging": "1.1.0",
     "NETStandard.Library": "1.6.1"
   },

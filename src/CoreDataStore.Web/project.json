@@ -2,7 +2,7 @@
   "version": "1.0.1-*",
 
   "dependencies": {
-    "Newtonsoft.Json": "9.0.2-beta1",
+    "Newtonsoft.Json": "10.0.1-beta1",
     "Microsoft.Extensions.Configuration.CommandLine": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
@@ -23,14 +23,12 @@
     "Swashbuckle": "6.0.0-beta902",
     "System.Globalization": "4.3.0",
     "System.Linq.Expressions": "4.3.0",
-    "System.Net.Http": "4.3.0",
-
+    "System.Net.Http": "4.3.1",
     "CoreDataStore.Data.Postgre": "1.0.1-*",
     "CoreDataStore.Data.Sqlite": "1.0.1-*",
     "CoreDataStore.Data.SqlServer": "1.0.1-*",
     "CoreDataStore.Domain": "1.0.1-*",
     "CoreDataStore.Service": "1.0.1-*"
-
   },
   "tools": {},
 
