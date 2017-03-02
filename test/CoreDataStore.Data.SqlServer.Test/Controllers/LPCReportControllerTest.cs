@@ -15,9 +15,9 @@ using FluentAssertions;
 using System.Linq;
 using CoreDataStore.Domain.Enum;
 using CoreDataStore.Web.Filters;
-using CoreDataStore.Common.Helpers;
 using CoreDataStore.Service.Models;
 using GenFu;
+using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
 {   

@@ -12,7 +12,7 @@ using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
-
+using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
