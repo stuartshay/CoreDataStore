@@ -2,7 +2,10 @@
 
 [![This image on DockerHub](https://img.shields.io/docker/pulls/stuartshay/coredatastore.svg)](https://hub.docker.com/r/stuartshay/coredatastore/) [![Build status](https://ci.appveyor.com/api/projects/status/4j2ebt69uw0e0wmg/branch/master?svg=true)](https://ci.appveyor.com/project/StuartShay/coredatastore/branch/master)
 [![CircleCI](https://circleci.com/gh/stuartshay/CoreDataStore.svg?style=shield)](https://circleci.com/gh/stuartshay/CoreDataStore)
-
+[![Build Status](https://travis-ci.org/AngularVN/CoreDataStore.svg?branch=master)](https://travis-ci.org/AngularVN/CoreDataStore)
+[![dependencies Status](https://david-dm.org/AngularVN/CoreDataStore/status.svg)](https://david-dm.org/AngularVN/CoreDataStore)
+[![devDependencies Status](https://david-dm.org/AngularVN/CoreDataStore/dev-status.svg)](https://david-dm.org/AngularVN/CoreDataStore?type=dev)
+[![Code Climate](https://codeclimate.com/github/AngularVN/CoreDataStore/badges/gpa.svg)](https://codeclimate.com/github/AngularVN/CoreDataStore)
 
 New York City Landmarks Reference Data     
 
@@ -28,8 +31,8 @@ Visual Studio 2017
 ### Web Application
 
 ```bash
-nodejs version: 6.x    
-npm3, gulp, typings 
+nodejs version: >= 4.x
+npm version: >= 3
 ```
 
 ## Build Web Application

@@ -36,10 +36,11 @@ export class MapsComponent implements OnInit {
 
   zoom: number = 12;
   scrollwheel = true;
-  constructor(private mapsservice: MapsService) {}
+  constructor(private mapsservice: MapsService) {
+    this.markers.push({ lat: 33.790807, lng: -117.835734, label: '' });
+  }
 
   ngOnInit() {
-    this.markers.push({ lat: 33.790807, lng: -117.835734, label: '' });
     this.mapsservice.getMaps().subscribe(
       data => {
         this.maps = data || [];

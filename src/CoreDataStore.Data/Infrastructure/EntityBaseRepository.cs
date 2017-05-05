@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Query;
@@ -98,7 +97,7 @@ namespace CoreDataStore.Data.Infrastructure
         public virtual IEnumerable<T> GetPage(int startRow, int pageLength, IEnumerable<SortModel> sortingList)
         {
             //if (orderBy == null)
-              //  orderBy = DefaultOrderBy.Expression;
+            //  orderBy = DefaultOrderBy.Expression;
 
             return _context.Set<T>().OrderBy<T>(sortingList).Skip(startRow).Take(pageLength).ToList();
         }

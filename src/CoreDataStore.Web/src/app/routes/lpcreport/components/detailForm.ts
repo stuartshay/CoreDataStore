@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 // import { Location } from '@angular/common';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
-import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
+// import { ToasterService, ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
 import { LPCReport } from '../models/lpcreport';
 import { LPCReportService } from '../services/lpcreport';
@@ -41,12 +41,13 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
 
 
   constructor(
-    private toasterService: ToasterService,
+    // private toasterService: ToasterService,
     private builder: FormBuilder,
     private session: SessionService,
     // private location: Location,
     private referenceService: ReferencesService,
-    private lpcReportService: LPCReportService) {
+    private lpcReportService: LPCReportService
+    ) {
     this.form = this.builder.group({
       'name': ['', Validators.compose([Validators.required])],
       'objectType': ['', Validators.compose([Validators.required])],
@@ -110,7 +111,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
       title: title || '',
       text: message
     };
-    this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
+    // this.toasterService.pop(this.toaster.type, this.toaster.title, this.toaster.text);
   };
 
   getDateFormatted(date) {
@@ -119,7 +120,7 @@ export class DetailFormComponent implements OnInit, AfterViewChecked {
     return [(mm.length === 2 && '0') + mm, (dd.length === 2 && '0') + dd, date.getFullYear()].join('/'); // padding
   };
 
-  public onSubmit(values: Object) {
+  public onSubmit(values: LPCReport) {
     this.submitted = true;
     if (this.form.valid) {
       let details: LPCReport = values;

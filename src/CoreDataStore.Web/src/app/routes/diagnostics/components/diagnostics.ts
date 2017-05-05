@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import Rx from 'rxjs/Rx'
 
 import { AppSettings } from '../../appsettings';
 import { DiagnosticsService } from '../services/diagnostics';
@@ -30,7 +30,7 @@ export class DiagnosticsComponent implements OnInit {
     );
   }
   ngOnInit() {
-    this.timer = Observable.interval(1000).subscribe(() => { this.getDiagnostics(); });
+    this.timer = Rx.Observable.interval(1000).subscribe(() => { this.getDiagnostics(); });
   }
 
   ngOnDestroy() {

@@ -17,6 +17,9 @@ cache:
   - '%APPDATA%\npm-cache'              # npm cache
   - '%USERPROFILE%\.nuget\packages'    # package cache
 
+services:
+  - mssql2016
+
 install:
   - dir
   - dotnet restore
@@ -31,12 +34,18 @@ build_script:
   - npm run build
   - cd ../..
 
+before_test:
+  - cd C:\Program Files (x86)\Microsoft SQL Server\130\DAC\bin
+  - ps: .\SqlPackage.exe /a:import /sf:C:\projects\coredatastore\data\NycLandmarks.bacpac /tdn:NycLandmarks /tsn:APPVYR-WIN\SQL2016
+
 test_script:
   - node --version
   - npm --version
   - docker version
+  - dotnet test C:\projects\coredatastore\test\CoreDataStore.Data.SqlServer.Test\CoreDataStore.Data.SqlServer.Test.csproj
 
 deploy_script:  
+ - cd C:\projects\coredatastore
  - ps: docker build -f docker/runtime-nanoserver.dockerfile -t "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER" .
  - ps: docker login -u="$env:DOCKER_USER" -p="$env:DOCKER_PASS"
  - ps: docker push "stuartshay/coredatastore:nanoserver-$env:APPVEYOR_BUILD_NUMBER"
@@ -44,10 +53,3 @@ deploy_script:
 #on_finish:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
-
-
-#test_script:
-#- ps: foreach ($d in dir .\test |? {$_.PSIsContainer -eq $True}){ &"dotnet" "test" $d.FullName }
-
-#artifacts:
-#  path: .\src\CoreDataStore.Web\bin\Debug\netcoreapp1.0\publish

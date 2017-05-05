@@ -13,6 +13,7 @@ const routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      // { path: 'home', component: HomeComponent },
       { path: 'diagnostics', component: DiagnosticsComponent },
       { path: 'references', component: ReferencesComponent },
       { path: 'details/:id', component: DetailsComponent },

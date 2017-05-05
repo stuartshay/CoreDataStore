@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.IO;
+﻿using System.IO;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.SqlServer.Repositories;
@@ -40,12 +39,10 @@ namespace CoreDataStore.Data.SqlServer.Test.Services
             AutoMapperConfiguration.Configure();
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
-        [Category("SQL-IntergrationTest")]
+
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
-            //int count = 0;
             var request = new LPCReportRequest
             {
                 PageSize = 20,

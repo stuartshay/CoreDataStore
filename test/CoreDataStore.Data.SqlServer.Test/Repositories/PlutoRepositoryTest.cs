@@ -11,10 +11,10 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 {
     public class PlutoRepositoryTest
     {
-       private readonly IPlutoRepository _plutoRepository;
+        private readonly IPlutoRepository _plutoRepository;
 
-       public PlutoRepositoryTest()
-       {
+        public PlutoRepositoryTest()
+        {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
@@ -27,28 +27,25 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 .AddScoped<IPlutoRepository, PlutoRepository>()
                 .BuildServiceProvider();
 
-             serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            serviceProvider.GetRequiredService<NYCLandmarkContext>();
             _plutoRepository = serviceProvider.GetRequiredService<IPlutoRepository>();
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Pluto_Block_Lot_Exist()
         {
             var results = _plutoRepository.FindBy(x => x.Block == 1 && x.Lot == 10).ToList();
             Assert.NotNull(results);
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Pluto_BBL_Exist()
         {
             var results = _plutoRepository.FindBy(x => x.BBL == 5080500013).ToList();
             Assert.NotNull(results);
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Get_Pluto_By_LPCNumber()
         {
             var lpNumber = "LP-02039";

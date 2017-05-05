@@ -1,5 +1,5 @@
   System.config({
-    defaultJSExtensions: true,
+    defaultExtensions: 'js',
     paths: {
       // paths serve as alias
       'libs:': 'node_modules/'
@@ -30,9 +30,10 @@
       'screenfull': 'libs:screenfull/dist/screenfull.js',
       'angular2-infinite-scroll': 'libs:angular2-infinite-scroll/angular2-infinite-scroll.js',
       // 'ng2-dnd': 'libs:ng2-dnd/bundles/index.umd.js',
-      'angular2-toaster': 'libs:angular2-toaster',
-      'angular2-google-maps': 'libs:angular2-google-maps/core/index.js',
-      'ng2-bootstrap': 'libs:ng2-bootstrap',
+      'angular2-toaster': 'libs:angular2-toaster/bundles/angular2-toaster.umd.js',
+      'angular2-google-maps/core': 'libs:angular2-google-maps/core/core.umd.js',
+      // 'ngx-bootstrap': 'libs:ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
+      'ngx-bootstrap': 'libs:ngx-bootstrap',
       'ng2-table': 'libs:ng2-table',
       'ng2-select': 'libs:ng2-select'
 
@@ -42,7 +43,10 @@
       app: { main: 'main.js', defaultExtension: 'js' },
       rxjs: { defaultExtension: 'js' },
       'ng2-select': { defaultExtension: 'js' },
-      'ng2-bootstrap': { defaultExtension: 'js' },
+      'ng2-table': { defaultExtension: 'js' },
+      'ngx-bootstrap/collapse': { main: 'index.js', defaultExtension: 'js' },
+      'ngx-bootstrap/datepicker': { main: 'index.js', defaultExtension: 'js' },
+      'ngx-bootstrap/pagination': { main: 'index.js', defaultExtension: 'js' },
       'angular2-in-memory-web-api': { main: './index.js', defaultExtension: 'js' }
     }
   });

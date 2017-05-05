@@ -20,7 +20,7 @@ using GenFu;
 using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Data.SqlServer.Test.Controllers
-{   
+{
     public class LPCReportControllerTest
     {
         private readonly IServiceProvider _serviceProvider;
@@ -57,7 +57,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
                 .Fill(l => l.Borough, () => BaseValueGenerator.GetRandomValue(boroughs))
                 .Fill(l => l.ObjectType, () => BaseValueGenerator.GetRandomValue(objectTypes));
 
-            var lpcReports = GenFu.GenFu.ListOf<LPCReport>(20);  
+            var lpcReports = GenFu.GenFu.ListOf<LPCReport>(20);
 
             dbContext.LPCReports.AddRange(lpcReports);
 
@@ -68,7 +68,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
                 .Fill(p => p.Pluto)
                 .Fill(l => l.BoroughID, () => BaseValueGenerator.GetRandomValue(boroughCodes))
                 .Fill(m => m.LP_NUMBER, () => string.Format("LP-{0,5:D5}", j));
-                
+
 
             var landmarks = GenFu.GenFu.ListOf<Landmark>(20);
 
@@ -81,7 +81,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
             dbContext.Database.EnsureDeleted();
 
-            CreateTestData(dbContext); 
+            CreateTestData(dbContext);
 
             var lpcReportSvc = _serviceProvider.GetRequiredService<ILPCReportService>();
             var landmarkSvc = _serviceProvider.GetRequiredService<ILandmarkService>();
@@ -181,7 +181,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Controllers
             var dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
             var model1 = dbContext.LPCReports.Where(x => x.Id == 1);
 
-            var model = new LPCReportModel{};
+            var model = new LPCReportModel { };
 
             var actionResult = controller.Put(id, model);
 

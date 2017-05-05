@@ -27,12 +27,12 @@ namespace CoreDataStore.Web.Controllers
 
 
         /// <summary>
-        /// 
+        ///  Get Pluto for LPC Landmark
         /// </summary>
         /// <returns></returns>
-        [Produces(typeof(IEnumerable<PlutoModel>))]
-        [ProducesResponseType(typeof(IEnumerable<PlutoModel>), 200)]
         [HttpGet("{lpcNumber}")]
+        [Produces("application/json", Type = typeof(IEnumerable<PlutoModel>))]
+        [ProducesResponseType(typeof(IEnumerable<PlutoModel>), 200)]
         public IEnumerable<PlutoModel> Get(string lpcNumber)
         {
             return _plutoService.GetPluto(lpcNumber);

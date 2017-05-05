@@ -40,8 +40,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void LPC_Reports_Exist()
         {
             var results = _lpcReportRepository.GetAll().ToList();
@@ -49,8 +48,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Update_LPC_Report()
         {
             var lpcReport = _lpcReportRepository.GetSingle(1);
@@ -61,8 +59,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_LPCReport()
         {
             var lpNumber = "LP-00871";
@@ -72,9 +69,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-00871";
@@ -87,8 +82,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Paging_List()
         {
             //int count = 0;

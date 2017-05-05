@@ -42,8 +42,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-       //[Fact]
-       [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Landmark()
         {
             var id = 100;
@@ -52,8 +51,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Fields()
         {
             var lpNumber = "LP-02039";
@@ -64,8 +62,7 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Included_Pluto_Fields()
         {
             var lpNumber = "LP-02039";
@@ -76,8 +73,8 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
 
         }
 
-        [Fact(Skip = "ci test")]
-       // [Fact]
+
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<Landmark>();
@@ -116,6 +113,6 @@ namespace CoreDataStore.Data.SqlServer.Test.Repositories
                 _dbContext.SaveChanges();
             }
         }
-  
+
     }
 }

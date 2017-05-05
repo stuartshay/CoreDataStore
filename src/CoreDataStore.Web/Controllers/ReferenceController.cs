@@ -34,6 +34,7 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet]
         [Route("borough")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [Produces("application/json", Type = typeof(IEnumerable<string>))]
         public IEnumerable<string> GetBoroughs()
         {
             return EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription());
@@ -46,6 +47,7 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet]
         [Route("objectType")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [Produces("application/json", Type = typeof(IEnumerable<string>))]
         public IEnumerable<string> GetReferenceTypes()
         {
             return EnumHelper.EnumToList<ObjectType>().Select(e => e.GetDescription());
@@ -59,6 +61,7 @@ namespace CoreDataStore.Web.Controllers
         [HttpGet]
         [Route("parentStyle")]
         [ProducesResponseType(typeof(IEnumerable<string>), 200)]
+        [Produces("application/json", Type = typeof(IEnumerable<string>))]
         public IEnumerable<string> GetParentStyles()
         {
             return StylesData.GetParentStyles();
