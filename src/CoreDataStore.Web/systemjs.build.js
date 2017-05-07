@@ -31,8 +31,10 @@
       'screenfull': 'npm:screenfull/dist/screenfull.js',
       'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js',
       'angular2-google-maps/core': 'npm:angular2-google-maps/core/core.umd.js',
-      'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
       // 'ngx-bootstrap': 'npm:ngx-bootstrap',
+      'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
+      'ngx-bootstrap/*': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.min.js',
+      'ngx-bootstrap/sortable.js': 'npm:ngx-bootstrap/sortable/index.js',
       'ng2-table': 'npm:ng2-table',
       'ng2-select': 'npm:ng2-select'
 

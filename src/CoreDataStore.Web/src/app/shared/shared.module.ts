@@ -5,9 +5,10 @@ import { RouterModule } from '@angular/router';
 import { HttpModule, Http } from '@angular/http';
 import { ToasterModule } from 'angular2-toaster';
 
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+// import { CollapseModule } from 'ngx-bootstrap/collapse';
 // import { DatepickerModule } from 'ngx-bootstrap/datepicker';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+// import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CollapseModule, PaginationModule } from 'ngx-bootstrap';
 
 import { ColorsService } from './colors/colors.service';
 import { SessionService } from './services/session';

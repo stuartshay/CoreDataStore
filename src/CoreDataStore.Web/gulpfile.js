@@ -109,7 +109,7 @@ gulp.task('tsc', ['tslint'], () => {
 gulp.task('compile', ['tsc'], () => {
   if (NG_ENVIRONMENT !== 'Dev') {
     var builder = new SystemBuilder();
-    return builder.loadConfig('systemjs.config.js')
+    return builder.loadConfig('systemjs.build.js')
       .then(() => builder.buildStatic('app', path.join(buildDir, 'js', 'bundle.js')));
   }
   return;
