@@ -2,10 +2,9 @@
 
   <PropertyGroup>
     <VersionPrefix>1.0.1</VersionPrefix>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Service</AssemblyName>
     <PackageId>CoreDataStore.Service</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
@@ -20,8 +19,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.0" />
-    <PackageReference Include="FluentValidation" Version="7.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.2" />
+    <PackageReference Include="FluentValidation" Version="7.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.0.0-preview1-final" />
   </ItemGroup>
 
 </Project>
