@@ -16,7 +16,7 @@ jobs:
           name: Install Ubuntu Build Packages
           command: |
             apt update
-            apt install -y curl git apt-transport-https libcurl4-openssl-dev
+            apt install -y curl git apt-transport-https unzip libunwind8 gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
       - setup_remote_docker
       # use a primary image that already has Docker (recommended)
       # or install it during a build like we do here
@@ -45,10 +45,10 @@ jobs:
           name: Restore and publish .NET
           command: |
             dotnet --info
-            dotnet new console -o hwapp
-            cd hwapp
-            dotnet restore
-            dotnet run
+            #dotnet new console -o hwapp
+            #cd hwapp
+            #dotnet restore
+            #dotnet run
            # dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
       - run:
           name: Build and bundle from source
