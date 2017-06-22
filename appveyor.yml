@@ -24,7 +24,7 @@ services:
 install:
   - dir
   - dotnet restore
-  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r win10-x64
+  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r win10-x64
   - ps: Install-Product node $env:nodejs_version
   - npm install -g npm@3
   
