@@ -23,17 +23,17 @@ jobs:
       - run:
           name: Install Docker client
           command: |
-            set -x
-            VER="17.03.0-ce"
-            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-            mv /tmp/docker/* /usr/bin
+          #  set -x
+          #  VER="17.03.0-ce"
+          #  curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+          #  tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+          #   mv /tmp/docker/* /usr/bin
       - run:
           name: Install NodeJS v6
-          command: |
-            curl -sL https://deb.nodesource.com/setup_6.x | bash -
-            apt update
-            apt install -y nodejs
+          #command: |
+          #  curl -sL https://deb.nodesource.com/setup_6.x | bash -
+          #  apt update
+          #  apt install -y nodejs
       - run:
           name: Install .NET Core
           command: |
@@ -45,23 +45,23 @@ jobs:
           name: Restore and publish .NET
           command: |
             dotnet restore
-            dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
+           # dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
       - run:
-          name: Build and bundle from source
-          command: |
-            ( cd src/CoreDataStore.Web ; npm i; npm run clean ; npm run build )
+         name: Build and bundle from source
+          #command: |
+           # ( cd src/CoreDataStore.Web ; npm i; npm run clean ; npm run build )
       - run:
           name: Build and push Docker image
           command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
-            docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore .
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push stuartshay/coredatastore
+            #TAG=0.1.$CIRCLE_BUILD_NUM
+            #docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore .
+            #docker login -u $DOCKER_USER -p $DOCKER_PASS
+            #docker push stuartshay/coredatastore
           # docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TAG .
           # docker push stuartshay/coredatastore:$TAG
       - save_cache:
           key: v1-coredatastore-{{ checksum ".circleci/config.yml" }}
           paths:
-            - ~/.caches
-            - ~/.nuget
+           # - ~/.caches
+           # - ~/.nuget
             - ~/.npm
