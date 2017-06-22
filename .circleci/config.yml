@@ -44,8 +44,11 @@ jobs:
       - run: 
           name: Restore and publish .NET
           command: |
+            dotnet new console -o hwapp
+            cd hwapp
             dotnet restore
-            dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
+            dotnet run
+           # dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
       - run:
           name: Build and bundle from source
           command: |
