@@ -20,7 +20,8 @@ cd  CoreDataStore/
 dotnet restore
 
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
--c Release -f netcoreapp1.1 -r debian.8-x64
+-c Release -f netcoreapp2.0 -r debian.8-x64
+
 
 docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
 ```
