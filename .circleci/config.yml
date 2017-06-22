@@ -13,10 +13,10 @@ jobs:
     steps:
       - checkout
       - run: 
-          name: Install curl and git
+          name: Install Ubuntu Build Packages
           command: |
             apt update
-            apt install -y curl git
+            apt install -y curl git apt-transport-https
       - setup_remote_docker
       # use a primary image that already has Docker (recommended)
       # or install it during a build like we do here
@@ -40,12 +40,12 @@ jobs:
             sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
             apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
             apt update
-            apt install -y dotnet-dev-1.0.4
+            apt install -y dotnet-dev-2.0.0-preview1-005977
       - run: 
           name: Restore and publish .NET
           command: |
             dotnet restore
-            dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r debian.8-x64
+            dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
       - run:
           name: Build and bundle from source
           command: |
