@@ -44,6 +44,7 @@
     <PackageReference Include="Navigator.Common" Version="1.1.0.4" />
     <PackageReference Include="Navigator.Middleware" Version="1.1.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0-preview1-final" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

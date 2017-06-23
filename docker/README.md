@@ -10,7 +10,6 @@ npm i
 npm run clean  
 npm run build
 ```
-
 ### Linux
 
 #### Publish Build Artifacts 
@@ -21,7 +20,6 @@ dotnet restore
 
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
 -c Release -f netcoreapp2.0 -r debian.8-x64
-
 
 docker build -f docker/runtime.dockerfile -t coredatastore-runtime  .
 ```
