@@ -45,7 +45,7 @@ cd  CoreDataStore/
 dotnet restore
 
 dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj \
--c Release -f netcoreapp1.1 -r win10-x64
+-c Release -f netcoreapp2.0 -r win10-x64
 
 docker build -f docker/runtime-nanoserver.dockerfile -t coredatastore-runtime  .
 ````
