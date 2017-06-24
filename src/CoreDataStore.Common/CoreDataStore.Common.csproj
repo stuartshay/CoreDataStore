@@ -5,7 +5,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Common</AssemblyName>
     <PackageId>CoreDataStore.Common</PackageId>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <Version>1.0.3</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

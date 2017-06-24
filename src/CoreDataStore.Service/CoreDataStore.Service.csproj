@@ -5,15 +5,17 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Service</AssemblyName>
     <PackageId>CoreDataStore.Service</PackageId>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.0.4</Version>
+    <Authors>Stuart Shay</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoreDataStore.Data.Sqlite\CoreDataStore.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\CoreDataStore.Common\CoreDataStore.Common.csproj" />
+    <ProjectReference Include="..\CoreDataStore.Data\CoreDataStore.Data.csproj" />
     <ProjectReference Include="..\CoreDataStore.Domain\CoreDataStore.Domain.csproj" />
   </ItemGroup>
 

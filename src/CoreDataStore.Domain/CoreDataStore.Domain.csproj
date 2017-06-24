@@ -5,7 +5,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Domain</AssemblyName>
     <PackageId>CoreDataStore.Domain</PackageId>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <Version>1.0.3</Version>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Authors>Stuart Shay</Authors>
   </PropertyGroup>
 
   <ItemGroup>
