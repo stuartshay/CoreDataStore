@@ -8,21 +8,22 @@ services:
     depends_on:
      - "web"
     ports:
-        - "80:80"
+     - "80:80"
     networks:
-      - aspnetcoreapp-network
-
+     - aspnetcoreapp-network
 
   web:
     container_name: 'coredatastore_web'
-    image: "stuartshay/coredatastore:stable"
+    image: "stuartshay/coredatastore:build"
     ports:
      - "5000:5000"
+    environment:
+     - NG_ENVIRONMENT=production
+     - LANDMARK=http://LANDMARK.API:80/api/
     depends_on:
      - "database"
     networks:
-      - aspnetcoreapp-network
-
+     - aspnetcoreapp-network
 
   database:
     container_name: 'database'
@@ -30,19 +31,9 @@ services:
     environment:
       POSTGRES_PASSWORD: password
     networks:
-      - aspnetcoreapp-network
+     - aspnetcoreapp-network
 
 
 networks:
   aspnetcoreapp-network:
     driver: bridge
-
-
-
-
-
-
-
-
-
-
