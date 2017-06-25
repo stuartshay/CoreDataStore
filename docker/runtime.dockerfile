@@ -2,7 +2,7 @@ FROM microsoft/dotnet:2.0.0-preview1-runtime
 MAINTAINER Stuart Shay
 
 # Set environment variables
-ENV NG_ENVIRONMENT
+ENV NG_ENVIRONMENT ${NG_ENVIRONMENT}
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Staging"
 
