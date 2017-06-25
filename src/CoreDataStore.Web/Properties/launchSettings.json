@@ -18,7 +18,7 @@
     "CoreDataStore.Web": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000/swagger/ui/index.html",
+      "launchUrl": "swagger/ui/index.html#/",
       "environmentVariables": {
         "CONNECTION_PostgreSQL": "User ID=postgres; Password=password;  Server=localhost;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true",
         "ASPNETCORE_ENVIRONMENT": "Development"

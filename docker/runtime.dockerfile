@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.0.0-preview1-runtime-jessie
+FROM microsoft/dotnet:2.0.0-preview1-runtime
 MAINTAINER Stuart Shay
 
 # Set environment variables
