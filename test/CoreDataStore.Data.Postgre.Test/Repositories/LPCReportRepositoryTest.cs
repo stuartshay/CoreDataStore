@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,30 +13,33 @@ using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
+using Microsoft.Extensions.Configuration;
 using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class LPCReportRepositoryTest
     {
-        private readonly IServiceProvider _serviceProvider;
         private readonly ILPCReportRepository _lpcReportRepository;
-        private readonly NYCLandmarkContext _dbContext;
 
         public LPCReportRepositoryTest()
         {
-            var services = new ServiceCollection();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseNpgsql(@"User ID=nyclandmarks;Password=nyclandmarks;Server=192.168.99.101;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"));
+            var dbonnection = builder.GetConnectionString("PostgreSQL");
 
-            services.AddScoped<ILPCReportRepository, LPCReportRepository>();
-            _serviceProvider = services.BuildServiceProvider();
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
+                .AddScoped<ILPCReportRepository, LPCReportRepository>()
+                .BuildServiceProvider();
 
-            _dbContext = _serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            _lpcReportRepository = _serviceProvider.GetRequiredService<ILPCReportRepository>();
-
+            serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            _lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
         }
+
 
         [Fact]
         public void LPC_Reports_Exist()
@@ -76,21 +80,22 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             sortingList.Add(sortModel);
 
             var results = _lpcReportRepository
-                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList).ToList();
 
             Assert.NotNull(results);
 
         }
 
 
-        [Fact(Skip = "ci test")]
-        public void Can_Load_LPC_Report()
-        {
-            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
 
-            _dbContext.LPCReports.AddRange(lpcReports);
-            _dbContext.SaveChanges();
-        }
+        //[Fact(Skip = "ci test")]
+        //public void Can_Load_LPC_Report()
+        //{
+        //    var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
+
+        //    _dbContext.LPCReports.AddRange(lpcReports);
+        //    _dbContext.SaveChanges();
+        //}
 
     }
 }

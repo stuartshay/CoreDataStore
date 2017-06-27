@@ -64,6 +64,7 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<Pluto>().Property(t => t.Id).HasColumnName("id");
             builder.Entity<Pluto>().Property(t => t.BBL).IsRequired();
             builder.Entity<Pluto>().Property(t => t.Address).HasMaxLength(28);
+          //  builder.Entity<Pluto>().Property(t => t.ZipCode).HasMaxLength(5);
 
 
             builder.Entity<Pluto>().Property(t => t.Latitude).HasPrecision(9, 6).IsRequired();

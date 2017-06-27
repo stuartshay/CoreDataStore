@@ -5,9 +5,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Data</AssemblyName>
     <PackageId>CoreDataStore.Data</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <Authors>Stuart Shay</Authors>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

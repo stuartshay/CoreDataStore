@@ -8,8 +8,8 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>1.0.4</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.5</Version>
     <Authors>Stuart Shay</Authors>
   </PropertyGroup>
 

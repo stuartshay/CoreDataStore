@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Data.Postgre.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -32,20 +33,28 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact]
         public void Pluto_Block_Lot_Exist()
         {
-            var results = _plutoRepository.FindBy(x => x.Block == 1096 && x.Lot == 54);
-            Assert.NotNull(results);
+            int block = 1096;
+            int lot = 54;
+
+            var result = _plutoRepository.FindBy(x => x.Block == block && x.Lot == lot).FirstOrDefault();
+
+            Assert.NotNull(result);
+            Assert.Equal(block, result.Block);
+            Assert.Equal(lot, result.Lot);
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+        [Fact]
         public void Pluto_BBL_Exist()
         {
-            var results = _plutoRepository.FindBy(x => x.BBL == 5080500013);
-            Assert.NotNull(results);
+            long bbl = 5080500013;
+            var result = _plutoRepository.FindBy(x => x.BBL == bbl).FirstOrDefault();
+
+            Assert.NotNull(result);
+            Assert.Equal("10307", result.ZipCode);
+            Assert.Equal(bbl, bbl);
         }
 
     }
