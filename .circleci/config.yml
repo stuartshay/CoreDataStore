@@ -51,8 +51,9 @@ jobs:
           name: Pull and Test coredatastore-postgres
           command: |
             docker pull stuartshay/coredatastore-postgres:stable
-            docker run -d -p 5432:5432 stuartshay/coredatastore-postgres:stable
+            docker run -d --name database -p 5432:5432 stuartshay/coredatastore-postgres:stable 
             docker ps
+            docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database
             ### dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
       - run:
           name: Build and bundle from source
