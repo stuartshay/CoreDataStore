@@ -26,6 +26,8 @@ namespace CoreDataStore.Domain.Entities
 
         public long BBL { get; set; }
 
+        public string ZipCode { get; set; }
+
         public int XCoord { get; set; }
 
         public int YCoord { get; set; }

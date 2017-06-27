@@ -24,6 +24,8 @@
 
         public long BBL { get; set; }
 
+        public string ZipCode { get; set; }
+
         public double XCoord { get; set; }
 
         public double YCoord { get; set; }
