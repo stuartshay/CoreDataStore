@@ -53,7 +53,7 @@ jobs:
             docker pull stuartshay/coredatastore-postgres:stable
             docker run -d -p 5432:5432 stuartshay/coredatastore-postgres:stable
             docker ps
-            dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
+            ### dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
       - run:
           name: Build and bundle from source
           command: |
