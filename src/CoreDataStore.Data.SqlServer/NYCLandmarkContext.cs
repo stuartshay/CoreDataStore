@@ -40,6 +40,8 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<LPCLocation>().Property(t => t.Borough).HasMaxLength(13);
             builder.Entity<LPCLocation>().Property(t => t.ZipCode).HasMaxLength(5);
             builder.Entity<LPCLocation>().Property(t => t.ObjectType).HasMaxLength(50);
+            builder.Entity<LPCLocation>().Property(t => t.Latitude).HasPrecision(9, 6);
+            builder.Entity<LPCLocation>().Property(t => t.Longitude).HasPrecision(9, 6);
 
 
             builder.Entity<Landmark>().HasKey(m => m.Id);
