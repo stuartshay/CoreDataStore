@@ -6,10 +6,10 @@ jobs:
     working_directory: ~/src/CoreDataStore.Web
     environment:
       - NG_ENVIRONMENT: "Stage"
-      - LANDMARK : "https://coredatastore.com/"
+      - LANDMARK : "https://coredatastore.com/api/"
       - ATTRACTION : "http://informationcart.eastus2.cloudapp.azure.com:83/api/"
       - MAPSAPI : "http://informationcart.eastus2.cloudapp.azure.com:82/api/"
-      - REPORTSAPI: "https://reports.coredatastore.com/"
+      - REPORTSAPI: "https://reports.coredatastore.com/api/"
     steps:
       - checkout
       - run: 
