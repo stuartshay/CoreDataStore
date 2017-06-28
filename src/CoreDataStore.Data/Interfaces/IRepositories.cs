@@ -7,6 +7,8 @@ namespace CoreDataStore.Data.Interfaces
 
     public interface ILPCReportRepository : IEntityBaseRepository<LPCReport> { }
 
+    public interface ILPCLocationRepository : IEntityBaseRepository<LPCLocation> { }
+
     public interface IPlutoRepository : IEntityBaseRepository<Pluto> { }
-    
+
 }

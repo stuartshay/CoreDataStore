@@ -30,9 +30,17 @@ namespace CoreDataStore.Data.SqlServer
             builder.Entity<LPCReport>().Property(t => t.LPCId).HasMaxLength(10).IsRequired();
             builder.Entity<LPCReport>().Property(t => t.PhotoURL).HasMaxLength(500);
             builder.Entity<LPCReport>().Property(t => t.Style).HasMaxLength(100);
-
             //Shadow Properties
             //builder.Entity<LPCReport>().Property<DateTime>("Modified");
+
+
+            builder.Entity<LPCLocation>().HasKey(m => m.Id);
+            builder.Entity<LPCLocation>().Property(t => t.Name).HasMaxLength(200).IsRequired();
+            builder.Entity<LPCLocation>().Property(t => t.LPNumber).HasMaxLength(10).IsRequired();
+            builder.Entity<LPCLocation>().Property(t => t.Borough).HasMaxLength(13);
+            builder.Entity<LPCLocation>().Property(t => t.ZipCode).HasMaxLength(5);
+            builder.Entity<LPCLocation>().Property(t => t.ObjectType).HasMaxLength(50);
+
 
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasMaxLength(2).IsRequired();
@@ -90,6 +98,8 @@ namespace CoreDataStore.Data.SqlServer
         }
 
         public DbSet<LPCReport> LPCReports { get; set; }
+
+        public DbSet<LPCLocation> LPCLocation { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
 
