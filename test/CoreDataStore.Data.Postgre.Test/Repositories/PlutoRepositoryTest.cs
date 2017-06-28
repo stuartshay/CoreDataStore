@@ -11,9 +11,9 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class PlutoRepositoryTest
     {
-       private readonly IPlutoRepository _plutoRepository;
+        private readonly IPlutoRepository _plutoRepository;
 
-       public PlutoRepositoryTest()
+        public PlutoRepositoryTest()
        {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -32,8 +32,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
         }
 
-
-        [Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void Pluto_Block_Lot_Exist()
         {
             int block = 1096;
@@ -46,7 +45,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             Assert.Equal(lot, result.Lot);
         }
 
-        [Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void Pluto_BBL_Exist()
         {
             long bbl = 5080500013;

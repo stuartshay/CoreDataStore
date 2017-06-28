@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +21,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
     {
         private readonly ILPCReportRepository _lpcReportRepository;
 
+        private readonly NYCLandmarkContext _dbContext;
         public LPCReportRepositoryTest()
         {
             var builder = new ConfigurationBuilder()
@@ -37,11 +37,13 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
                 .BuildServiceProvider();
 
             serviceProvider.GetRequiredService<NYCLandmarkContext>();
+
+            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
             _lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
         }
 
 
-        [Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void LPC_Reports_Exist()
         {
             var results = _lpcReportRepository.GetAll().ToList();
@@ -52,7 +54,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        [Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Borough_List()
         {
             var results = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
@@ -60,7 +62,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        [Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<LPCReport>();
@@ -87,15 +89,14 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
+        [Fact(Skip = "ci test")]
+        public void Can_Load_LPC_Report()
+        {
+            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
 
-        //[Fact(Skip = "ci test")]
-        //public void Can_Load_LPC_Report()
-        //{
-        //    var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
-
-        //    _dbContext.LPCReports.AddRange(lpcReports);
-        //    _dbContext.SaveChanges();
-        //}
+            _dbContext.LPCReports.AddRange(lpcReports);
+            _dbContext.SaveChanges();
+        }
 
     }
 }
