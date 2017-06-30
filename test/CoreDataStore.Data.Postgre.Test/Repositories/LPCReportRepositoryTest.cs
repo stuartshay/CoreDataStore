@@ -88,6 +88,14 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
         }
 
+        [Fact, Trait("Category", "Intergration")]
+        public void Can_Get_Lamppost_List()
+        {
+          // var results = _dbContext.
+            //Assert.NotNull(results);
+        }
+
+
 
         [Fact(Skip = "ci test")]
         public void Can_Load_LPC_Report()

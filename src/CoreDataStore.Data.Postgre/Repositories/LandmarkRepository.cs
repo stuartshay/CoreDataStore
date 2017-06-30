@@ -10,10 +10,5 @@ namespace CoreDataStore.Data.Postgre.Repositories
             : base(context)
         {
         }
-
-        //public IEnumerable<Landmark> GetLandmarks(string lpNumber)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using CoreDataStore.Domain.Entities;
+﻿using CoreDataStore.Data.Conventions;
+using CoreDataStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CoreDataStore.Data.SqlServer.Mappings
