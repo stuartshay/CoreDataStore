@@ -6,6 +6,8 @@ namespace CoreDataStore.Domain.Entities
     {
         public long Id { get; set; }
 
+        public int PostId { get; set; }
+
         public string Type { get; set; }
 
         public string SubType { get; set; }
