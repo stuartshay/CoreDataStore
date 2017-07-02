@@ -39,6 +39,15 @@ namespace CoreDataStore.Data.Postgre
             builder.Entity<LPCLocation>().Property(t => t.Latitude).HasPrecision(9, 6);
             builder.Entity<LPCLocation>().Property(t => t.Longitude).HasPrecision(9, 6);
 
+
+            builder.Entity<LPCLamppost>().HasKey(m => m.Id);
+            builder.Entity<LPCLamppost>().Property(t => t.Type).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LPCLamppost>().Property(t => t.SubType).HasColumnType("varchar").HasMaxLength(50);
+            builder.Entity<LPCLamppost>().Property(t => t.Borough).HasColumnType("varchar").HasMaxLength(20);
+            builder.Entity<LPCLamppost>().Property(t => t.Latitude).HasPrecision(9, 6);
+            builder.Entity<LPCLamppost>().Property(t => t.Longitude).HasPrecision(9, 6);
+
+
             builder.Entity<Landmark>().HasKey(m => m.Id);
             builder.Entity<Landmark>().Property(t => t.BoroughID).HasColumnType("varchar").HasMaxLength(2).IsRequired();
             builder.Entity<Landmark>().Property(t => t.BOUNDARIES).HasColumnType("varchar").HasMaxLength(50).IsRequired();
@@ -84,6 +93,8 @@ namespace CoreDataStore.Data.Postgre
         public DbSet<LPCReport> LPCReports { get; set; }
 
         public DbSet<LPCLocation> LPCLocation { get; set; }
+
+        public DbSet<LPCLamppost> LPCLamppost { get; set; }
 
         public DbSet<Landmark> Landmarks { get; set; }
 

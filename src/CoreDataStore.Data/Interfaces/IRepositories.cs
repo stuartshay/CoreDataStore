@@ -9,6 +9,8 @@ namespace CoreDataStore.Data.Interfaces
 
     public interface ILPCLocationRepository : IEntityBaseRepository<LPCLocation> { }
 
+    public interface ILPCLamppostRepository : IEntityBaseRepository<LPCLamppost> { }
+
     public interface IPlutoRepository : IEntityBaseRepository<Pluto> { }
 
 }

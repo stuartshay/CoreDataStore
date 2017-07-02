@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+
 using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Web

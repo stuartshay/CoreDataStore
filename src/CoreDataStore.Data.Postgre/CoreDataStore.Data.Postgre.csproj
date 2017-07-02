@@ -5,9 +5,11 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Data.Postgre</AssemblyName>
     <PackageId>CoreDataStore.Data.Postgre</PackageId>
-    <Version>1.0.6</Version>
+    <Version>1.0.8</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Stuart Shay</Authors>
+    <Description>CoreDataStore Postgres  Entity Framework Provider</Description>
+    <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

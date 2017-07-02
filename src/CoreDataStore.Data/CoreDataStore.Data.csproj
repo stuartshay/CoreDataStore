@@ -5,9 +5,11 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Data</AssemblyName>
     <PackageId>CoreDataStore.Data</PackageId>
-    <Version>1.0.6</Version>
+    <Version>1.0.8</Version>
     <Authors>Stuart Shay</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>CoreDataStore Data Provider</Description>
+    <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

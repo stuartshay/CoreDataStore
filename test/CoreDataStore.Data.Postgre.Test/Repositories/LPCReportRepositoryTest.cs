@@ -91,10 +91,12 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Lamppost_List()
         {
-          // var results = _dbContext.
-            //Assert.NotNull(results);
-        }
+            var results = _dbContext.LPCLamppost.ToList();
+            var count = results.Count();
 
+            Assert.NotNull(results);
+            Assert.NotEqual(0, count);
+        }
 
 
         [Fact(Skip = "ci test")]
