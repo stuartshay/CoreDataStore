@@ -2,11 +2,14 @@
 
   <PropertyGroup>
     <VersionPrefix>1.0.1</VersionPrefix>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Data.Postgre</AssemblyName>
     <PackageId>CoreDataStore.Data.Postgre</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <Version>1.0.8</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Stuart Shay</Authors>
+    <Description>CoreDataStore Postgres  Entity Framework Provider</Description>
+    <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,8 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0-preview1-final" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.0-preview1" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

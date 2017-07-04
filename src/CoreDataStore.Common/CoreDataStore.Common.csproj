@@ -2,17 +2,21 @@
 
   <PropertyGroup>
     <VersionPrefix>1.0.1</VersionPrefix>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>CoreDataStore.Common</AssemblyName>
     <PackageId>CoreDataStore.Common</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;dnxcore50;portable-net45+win8</PackageTargetFallback>
+    <Version>1.0.8</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>CoreDataStore Common Library
+</Description>
+    <RepositoryUrl>https://github.com/stuartshay/CoreDataStore</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Primitives" Version="4.3.0" />
     <PackageReference Include="System.Linq.Expressions" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0-preview1-25305-02" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

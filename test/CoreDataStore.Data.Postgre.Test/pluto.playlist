@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="CoreDataStore.Data.Postgre.Test.Repositories.PlutoRepositoryTest.Pluto_Block_Lot_Exist" /><Add Test="CoreDataStore.Data.SqlServer.Test.Repositories.PlutoRepositoryTest.Pluto_BBL_Exist" /></Playlist>

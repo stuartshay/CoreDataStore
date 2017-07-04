@@ -1,5 +1,5 @@
-version: '1.0.{build}'
-image: Visual Studio 2017
+version: '1.1.{build}'
+image: Visual Studio 2017 Preview
 
 init:
 - dotnet --info
@@ -24,7 +24,7 @@ services:
 install:
   - dir
   - dotnet restore
-  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r win10-x64
+  - dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r win10-x64
   - ps: Install-Product node $env:nodejs_version
   - npm install -g npm@3
   
@@ -37,7 +37,7 @@ build_script:
 
 before_test:
   - cd C:\Program Files (x86)\Microsoft SQL Server\130\DAC\bin
-  - ps: .\SqlPackage.exe /a:import /sf:C:\projects\coredatastore\data\NycLandmarks.bacpac /tdn:NycLandmarks /tsn:APPVYR-WIN\SQL2016
+  - ps: .\SqlPackage.exe /a:import /sf:C:\projects\coredatastore\data\NycLandmarks.bacpac /tdn:NycLandmarks /tsn:MASTER-WIN2016\SQL2016
 
 test_script:
   - node --version
@@ -53,4 +53,3 @@ deploy_script:
 
 #on_finish:
 # - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-

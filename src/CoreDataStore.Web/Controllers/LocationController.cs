@@ -1,12 +1,6 @@
-﻿using System.Collections.Generic;
-using CoreDataStore.Domain.Enum;
-using CoreDataStore.Domain.Interfaces;
+﻿using System;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using CoreDataStore.Data.Data;
-using CoreDataStore.Web.ViewModels;
-using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Web.Controllers
 {
@@ -35,7 +29,7 @@ namespace CoreDataStore.Web.Controllers
         [Route("api/Location/validate/")]
         public IActionResult Validate([FromBody] Position position)
         {
-            return Ok(false);
+            return Ok(true);
         }
 
 
@@ -62,12 +56,56 @@ namespace CoreDataStore.Web.Controllers
         /// <summary>
         /// 
         /// </summary>
+        public Coords Coords { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime TimeStamp { get; set; }
+
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Coords
+    {
+        /// <summary>
+        /// 
+        /// </summary>
         public double Latitude { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public double Longitude { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double Accuracy { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double Altitude { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double AltitudeAccuracy { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double Heading { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public double Speed { get; set; }
+
 
     }
 

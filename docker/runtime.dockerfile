@@ -1,7 +1,8 @@
-FROM microsoft/dotnet:1.1.2-runtime
+FROM microsoft/dotnet:2.0.0-preview1-runtime
 MAINTAINER Stuart Shay
 
 # Set environment variables
+ENV NG_ENVIRONMENT ${NG_ENVIRONMENT}
 ENV ASPNETCORE_URLS="http://*:5000"
 ENV ASPNETCORE_ENVIRONMENT="Staging"
 
@@ -9,8 +10,8 @@ ENV ASPNETCORE_ENVIRONMENT="Staging"
 EXPOSE 5000
 
 WORKDIR /app
-COPY src/CoreDataStore.Web/bin/Release/netcoreapp1.1/debian.8-x64/publish .
-COPY src/CoreDataStore.Web/bin/Release/netcoreapp1.1/debian.8-x64/CoreDataStore.Web.xml .
+COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.0/debian.8-x64/publish .
+COPY src/CoreDataStore.Web/bin/Release/netcoreapp2.0/debian.8-x64/CoreDataStore.Web.xml .
 COPY src/CoreDataStore.Web/wwwroot ./wwwroot
 
 ENTRYPOINT ["dotnet", "CoreDataStore.Web.dll"]

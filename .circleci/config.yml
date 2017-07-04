@@ -5,17 +5,18 @@ jobs:
       - image: ubuntu:16.04
     working_directory: ~/src/CoreDataStore.Web
     environment:
+      - NG_ENVIRONMENT: "Stage"
       - LANDMARK : "http://informationcart.eastus2.cloudapp.azure.com:80/api/"
       - ATTRACTION : "http://informationcart.eastus2.cloudapp.azure.com:83/api/"
       - MAPSAPI : "http://informationcart.eastus2.cloudapp.azure.com:82/api/"
-      - REPORTSAPI: "http://informationcart.eastus2.cloudapp.azure.com:84/api/"
+      - REPORTSAPI: "https://reports.coredatastore.com/api/"
     steps:
       - checkout
       - run: 
-          name: Install curl and git
+          name: Install Ubuntu Build Packages
           command: |
             apt update
-            apt install -y curl git
+            apt install -y curl git apt-transport-https unzip libunwind8 gettext libicu-dev liblttng-ust-dev libcurl4-openssl-dev libssl-dev uuid-dev
       - setup_remote_docker
       # use a primary image that already has Docker (recommended)
       # or install it during a build like we do here
@@ -39,12 +40,21 @@ jobs:
             sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
             apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
             apt update
-            apt install -y dotnet-dev-1.0.4
+            apt install -y dotnet-dev-2.0.0-preview1-005977
       - run: 
           name: Restore and publish .NET
           command: |
+            dotnet --info
             dotnet restore
-            dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp1.1 -r debian.8-x64
+            dotnet publish src/CoreDataStore.Web/CoreDataStore.Web.csproj -c Release -f netcoreapp2.0 -r debian.8-x64
+      - run:
+          name: Pull and Test coredatastore-postgres
+          command: |
+            docker pull stuartshay/coredatastore-postgres:stable
+            docker run -d --name database -p 5432:5432 stuartshay/coredatastore-postgres:stable 
+            docker ps
+            docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' database
+            # dotnet test test/CoreDataStore.Data.Postgre.Test/CoreDataStore.Data.Postgre.Test.csproj
       - run:
           name: Pull and Test coredatastore-postgres
           command: |
@@ -60,9 +70,9 @@ jobs:
           name: Build and push Docker image
           command: |
             TAG=0.1.$CIRCLE_BUILD_NUM
-            docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore .
+            docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:2.0-runtime .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push stuartshay/coredatastore
+            docker push stuartshay/coredatastore:2.0-runtime
           # docker build -f docker/runtime.dockerfile -t stuartshay/coredatastore:$TAG .
           # docker push stuartshay/coredatastore:$TAG
       - save_cache:

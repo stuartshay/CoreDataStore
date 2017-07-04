@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,36 +12,41 @@ using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Domain.Entities;
 using CoreDataStore.Domain.Enum;
+using Microsoft.Extensions.Configuration;
 using Navigator.Common.Helpers;
 
 namespace CoreDataStore.Data.Postgre.Test.Repositories
 {
     public class LPCReportRepositoryTest
     {
-        private readonly IServiceProvider serviceProvider;
-        private readonly ILPCReportRepository lpcReportRepository;
-        private readonly NYCLandmarkContext dbContext;
+        private readonly ILPCReportRepository _lpcReportRepository;
 
+        private readonly NYCLandmarkContext _dbContext;
         public LPCReportRepositoryTest()
         {
-            var services = new ServiceCollection();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
 
-            services.AddDbContext<NYCLandmarkContext>(options =>
-            options.UseNpgsql(@"User ID=nyclandmarks;Password=nyclandmarks;Server=192.168.99.100;Port=5432;Database=nyclandmarks;Integrated Security=true;Pooling=true;"));
+            var dbonnection = builder.GetConnectionString("PostgreSQL");
 
-            services.AddScoped<ILPCReportRepository, LPCReportRepository>();
-            serviceProvider = services.BuildServiceProvider();
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<NYCLandmarkContext>(options => options.UseNpgsql(dbonnection))
+                .AddScoped<ILPCReportRepository, LPCReportRepository>()
+                .BuildServiceProvider();
 
-            dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
-            lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
+            serviceProvider.GetRequiredService<NYCLandmarkContext>();
 
+            _dbContext = serviceProvider.GetRequiredService<NYCLandmarkContext>();
+            _lpcReportRepository = serviceProvider.GetRequiredService<ILPCReportRepository>();
         }
 
-        //[Fact]
-        [Fact(Skip = "ci test")]
+
+        [Fact, Trait("Category", "Intergration")]
         public void LPC_Reports_Exist()
         {
-            var results = lpcReportRepository.GetAll();
+            var results = _lpcReportRepository.GetAll().ToList();
             var count = results.Count();
 
             Assert.NotNull(results);
@@ -49,17 +54,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        [Fact(Skip = "ci test")]
-        public void Can_Load_LPC_Report()
-        {
-            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
-
-            dbContext.LPCReports.AddRange(lpcReports);
-            dbContext.SaveChanges();
-        }
-
-
-        [Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Borough_List()
         {
             var results = EnumHelper.EnumToList<Borough>().Select(e => e.GetDescription()).ToList();
@@ -67,8 +62,7 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
         }
 
 
-        [Fact(Skip = "ci test")]
-        //[Fact]
+        [Fact, Trait("Category", "Intergration")]
         public void Can_Get_Filtered_Paging_List()
         {
             var predicate = PredicateBuilder.True<LPCReport>();
@@ -87,13 +81,32 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
             var sortingList = new List<SortModel>();
             sortingList.Add(sortModel);
 
-            var results = lpcReportRepository
-                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
+            var results = _lpcReportRepository
+                .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList).ToList();
 
             Assert.NotNull(results);
 
         }
 
+        [Fact, Trait("Category", "Intergration")]
+        public void Can_Get_Lamppost_List()
+        {
+            var results = _dbContext.LPCLamppost.ToList();
+            var count = results.Count();
+
+            Assert.NotNull(results);
+            Assert.NotEqual(0, count);
+        }
+
+
+        [Fact(Skip = "ci test")]
+        public void Can_Load_LPC_Report()
+        {
+            var lpcReports = DataLoader.LoadLPCReports(@"./../../data/LPCReport.csv");
+
+            _dbContext.LPCReports.AddRange(lpcReports);
+            _dbContext.SaveChanges();
+        }
 
     }
 }

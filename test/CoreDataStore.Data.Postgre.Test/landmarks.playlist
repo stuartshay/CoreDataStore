@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="CoreDataStore.Data.Postgre.Test.Repositories.LPCReportRepositoryTest.Can_Get_Filtered_Paging_List" /><Add Test="CoreDataStore.Data.Postgre.Test.Repositories.LPCReportRepositoryTest.LPC_Reports_Exist" /></Playlist>
