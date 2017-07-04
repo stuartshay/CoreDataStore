@@ -1,7 +1,7 @@
 <div *ngFor="let property of properties" class="property_wrapper" (window:resize)="onResize($event)">
   <table class="table table-striped table-hover property-details" *ngIf="!mobileFlag">
     <tr>
-      <td><a href="{{ property.pdfURL || '#/references' }}">Designation Report:</a></td>
+      <td><a href="{{ property.pdfURL || '#/references' }}" target="_blank">Designation Report:</a></td>
       <td><a [routerLink]="['/details', property.id]">{{ property.name | capitalize }}</a></td>
       <td rowspan="7"><img class="img-thumbnail img-responsive" src="{{property.photoURL}}"/></td>
     </tr>

@@ -5,15 +5,10 @@ services:
 - docker
 env:
   global:
-  - NG_ENVIRONMENT=Stage
-  - LANDMARK=http://informationcart.eastus2.cloudapp.azure.com:80/api/
-  - MAPSAPI=http://informationcart.eastus2.cloudapp.azure.com:82/api/
   - secure: jm2AKgkxzwOM05AJPN8NfTNZ0zcOf80brh6/mgOj0AhfptGVlGBE9IbcB2pjv+vZbHwDk9mtmt0M8ZRgfXYDBxLmTUAOZPeoalxrH2MWFc8t07lyyBB63FVlQZDqwPogKt1lJXy7t4Zb07RwHKFWV6VMWs8p24MHNC1hK9mVgRO/3S6M95YUqJvSs6/4jYoSJuF2hgXU1Kr5WaE43MFl3Fr1A/wbYavMGy+ZVzd+/PiRzxxpBtJ1rN1l2l5pOf8+NouBkgW4IBCfYaZzkBIkmfrJieayDrn1KCw9OC2pPDamIwvJ2lk1HBlCLCJ7SYDwxmtoL6EBEJBisxwLnoqapdob699bDZao282FHL19K6wGpehljt8jYza4xW/ELOt10lYyY/egSQBX8h61+bt2cniDhhQdNFaA0huaOrwN4HkZj88qXMA7mIbyu5TkQMRvazlzEu0tzvGEu/RiVXwIFoYoveHugy3YBkk4BXw3NqIg1kxMh6TdF+SPQPwHZrC8eUQW1QCghF0ImpBU5UwDWMCwZQ6z7kwrmWPrVfv9DlzFfeZAohF8O39opUq7aFOYOvAnZKTp0FjO+ombCZJXx9q2z2VV/tSbPV3SRXF474u+J9CRJyOwfUERzRK8M4ezVwKkEq9H7tHwJUBs/RhhqaGQF0co6O8S6x1IxSRvIRw=
   - secure: X2vqYqJcV+ZM9Ypy4c2iRgS+uXrqQZrsxvj0NBz+P6ZNfu5DEIDqz5zPYPABmYeOxV04Xi5riHoygQhF6NAUqtQdjQRogRmyA1g+97tHgiJIPHaKmWWmu/Ob2JuXXKO1Y7qgDDYL4sD2vCqkgHjlnpfR4tVjnUSqjpbx7qiaz0fUhE0AMwArEu+QpwhZmw9GbWwWrGQ4iUJNbE7RY1SBpB/8dYGSLz7bLVXDfUdjCulCxNIhRlue6LiDu+tcwqiN03iabjQmJKYAmsfOTfjhEvugzOcR9e0Cvh4h/bd0P9ymWpRqMGYMGaXCpnr414VL0ikH3BbRAqp1Y6AOo009YMAd/rFTgphAouRN9upqMQ32dD9v1aumMz3pLfkKbEliHuZ3Y/nlxGbIThDJtn1Xcsl/SCzWsw58Wv73A5lUyt4yaKBJLuLkL7ZFVxoICB6ydtacfyb8FzP2irejY2EwGgWjiTF5M3OgyovnFHNiCQGcLoXSZocDWls4xCBqd+ysm1SH+BBtxh5FuyPUvdhty+jvyBDLXbW2za2/QmmRBF+R8gxvL4CjLJPZUpcLjbUXO7Mg2Ve9OmjT5WOpjk9DbxXCco8cxrDjcFvEsplk2l6TXvcbreYmvpSD9nAe3Voi6RIXBBmIwIjs1i2x2r3aGk+/HIyjlDe7E3RRmnsTOow=
 language: node_js
 node_js:
-- '4'
-- '5'
 - '6'
 - '7'
 addons:
@@ -28,13 +23,17 @@ script:
 - npm run clean
 - npm run build
 after_success:
+- rm -f wwwroot/index.html
 - cd ../..
 - docker build -f docker/node.dockerfile -t stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER .
-- docker run -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
+- docker run --env-file docker/env.staging -d -p 3000:3000 stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER
 - docker ps -a
-- if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+- if [ "$TRAVIS_BRANCH" == "master" ]; then
+  docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
   docker push stuartshay/coredatastore:node$TRAVIS_NODE_VERSION-$TRAVIS_BUILD_NUMBER;
   fi
+#- npm i selenium-webdriver assert mocha
+#- npm run selenium
 notifications:
   slack: leduong:8FHnajypcfOykiQS6Hn6QBB5
 

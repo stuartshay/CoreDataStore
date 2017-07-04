@@ -1,0 +1,25 @@
+html
+  head
+    title CoreDataStore
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='css/app.css')
+    link(rel='stylesheet', href='css/bootstrap.css')
+    link(rel='stylesheet', href='css/theme-a.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/ag-grid/10.1.0/styles/ag-grid.css')
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/ag-grid/10.1.0/styles/theme-blue.css')
+    script(type='text/javascript', src='js/shims.js')
+    style(type='text/css').
+      .spinner { width: 40px; height: 40px; background-color: #008cba; margin: 100px auto; -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out; animation: sk-rotateplane 1.2s infinite ease-in-out; } @-webkit-keyframes sk-rotateplane { 0% { -webkit-transform: perspective(120px) } 50% { -webkit-transform: perspective(120px) rotateY(180deg) } 100% { -webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg) } } @keyframes sk-rotateplane { 0% { transform: perspective(120px) rotateX(0deg) rotateY(0deg); -webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg) } 50% { transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg); -webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg) } 100% { transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg); } } .loading{ background-color: #d35400; }
+  // 3. Display the application
+  body
+    app-root
+      .spinner
+  script(type='text/javascript', src='js/bundle.js')
+  script.
+    if (typeof(Storage) !== "undefined") {
+    localStorage.setItem("ApiEndpoint", "#{LANDMARK}");
+    localStorage.setItem("ApiMaps", "#{MAPSAPI}");
+    localStorage.setItem("ng2ENV", "#{ng2ENV}");
+    } else {
+    alert('Sorry! No Web Storage support..');
+    }

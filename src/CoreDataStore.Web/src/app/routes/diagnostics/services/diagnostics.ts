@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from "@angular/http";
 
 import 'rxjs/add/operator/map';
-import { AppSettings } from '../../appsettings';
+import { AppSettings } from '../../../appsettings';
 
 @Injectable()
 export class DiagnosticsService {
