@@ -17,7 +17,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
     <PackageReference Include="Navigator.Common" Version="1.1.0.4" />
-    <PackageReference Include="Navigator.Middleware" Version="1.1.0.5" />
+    <PackageReference Include="Navigator.Middleware" Version="1.1.0.15" />
   </ItemGroup>
 
   <ItemGroup>
