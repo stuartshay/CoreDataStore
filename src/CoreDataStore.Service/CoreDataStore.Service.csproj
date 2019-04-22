@@ -23,7 +23,7 @@
     <PackageReference Include="FluentValidation" Version="8.2.2" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     <PackageReference Include="Navigator.Common" Version="1.6.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <PropertyGroup>
