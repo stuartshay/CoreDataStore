@@ -28,7 +28,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Examples" Version="2.9.0" />
 
-    <PackageReference Include="StyleCop.Analyzers" Version="1.1.0-beta009">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
