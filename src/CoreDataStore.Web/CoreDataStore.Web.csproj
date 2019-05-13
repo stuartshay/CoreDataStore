@@ -23,7 +23,7 @@
 
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
 
-    <PackageReference Include="Serilog.Sinks.Graylog" Version="2.0.7" />
+    <PackageReference Include="Serilog.Sinks.Graylog" Version="2.0.8" />
 
     <PackageReference Include="Swashbuckle.AspNetCore" Version="1.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Examples" Version="2.9.0" />
