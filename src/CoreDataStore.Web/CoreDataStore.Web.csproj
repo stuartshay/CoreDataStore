@@ -28,7 +28,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Navigator.Common" Version="1.6.0.1" />
+    <PackageReference Include="Navigator.Common" Version="2.0.0.2" />
     <PackageReference Include="Navigator.Middleware" Version="1.1.0.15" />
   </ItemGroup>
 
