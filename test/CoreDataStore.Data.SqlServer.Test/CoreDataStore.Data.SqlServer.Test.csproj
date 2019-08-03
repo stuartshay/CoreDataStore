@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.7.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" />
 
     <PackageReference Include="GenFu" Version="1.5.6" />
