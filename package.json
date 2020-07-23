@@ -28,7 +28,7 @@
     "@angular/core": "^4.0.2",
     "@angular/forms": "^4.0.2",
     "@angular/http": "^4.0.2",
-    "@angular/platform-browser": "^4.0.2",
+    "@angular/platform-browser": "^10.0.5",
     "@angular/platform-browser-dynamic": "^4.0.2",
     "@angular/router": "^4.0.2",
     "@angular/upgrade": "^4.0.2",
