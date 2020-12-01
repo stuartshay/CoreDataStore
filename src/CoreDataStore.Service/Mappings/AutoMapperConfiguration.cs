@@ -14,16 +14,16 @@ namespace CoreDataStore.Service.Mappings
             {
                 if (!_isMappingInitialized)
                 {
-                    Mapper.Initialize(x =>
-                    {
-                        x.AddProfile<LpcReportMapping>();
-                        x.AddProfile<LandmarkMapping>();
-                        x.AddProfile<PlutoMapping>();
-                    });
+                    //Mapper.Initialize(x =>
+                    //{
+                    //    x.AddProfile<LpcReportMapping>();
+                    //    x.AddProfile<LandmarkMapping>();
+                    //    x.AddProfile<PlutoMapping>();
+                    //});
                 }
 
                 _isMappingInitialized = true;
-                Mapper.AssertConfigurationIsValid();
+                //Mapper.AssertConfigurationIsValid();
             }
         }
     }

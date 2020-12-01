@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using AutoMapper;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
-using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Service.Test.Data;
@@ -34,6 +34,7 @@ namespace CoreDataStore.Service.Test.Mock
 
             // Assert
             Assert.NotNull(sut);
+            Assert.Equal(dataSet.Count, sut.Count);
             Assert.IsType<List<LpcReportModel>>(sut);
         }
 
@@ -54,6 +55,7 @@ namespace CoreDataStore.Service.Test.Mock
 
             // Assert
             Assert.NotNull(sut);
+            Assert.Equal(dataSet.Count, sut.Count);
             Assert.IsType<List<LpcReportModel>>(sut);
         }
 
@@ -88,10 +90,11 @@ namespace CoreDataStore.Service.Test.Mock
 
         private LpcReportService GetLpcReportService(ILpcReportRepository lpcReportRepository = null)
         {
-            AutoMapperConfiguration.Configure();
+            var config = new MapperConfiguration(cfg => { cfg.AddMaps("CoreDataStore.Service"); });
+            IMapper mapper = new Mapper(config);
 
-            lpcReportRepository = lpcReportRepository ?? new Mock<ILpcReportRepository>().Object;
-            return new LpcReportService(lpcReportRepository);
+            lpcReportRepository ??= new Mock<ILpcReportRepository>().Object;
+            return new LpcReportService(lpcReportRepository, mapper);
         }
     }
 }

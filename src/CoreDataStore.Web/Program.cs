@@ -8,6 +8,7 @@ using CoreDataStore.Web.Configuration;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Sinks.Graylog;
 
@@ -27,64 +28,78 @@ namespace CoreDataStore.Web
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", optional: true)
             .Build();
 
-        /// <summary>
-        /// Main Entry Point
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static int Main(string[] args)
-        {
-            var config = Configuration.Get<ApplicationOptions>();
 
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .WriteTo.Graylog(new GraylogSinkOptions
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    HostnameOrAddress = config.Graylog.Host,
-                    Port = 12201,
-                })
-                .CreateLogger();
+                    webBuilder.UseStartup<Startup>();
+                });
 
-            Serilog.Debugging.SelfLog.Enable(msg =>
-            {
-                Debug.Print(msg);
-                Debugger.Break();
-            });
 
-            try
-            {
-                Log.Information("Init:CoreDataStore.Web");
-                CreateWebHostBuilder(args).Build().Run();
-                return 0;
-            }
-            catch (Exception)
-            {
-                return 1;
-            }
-        }
+        ///// <summary>
+        ///// Main Entry Point
+        ///// </summary>
+        ///// <param name="args"></param>
+        ///// <returns></returns>
+        //public static int Main(string[] args)
+        //{
+        //    var config = Configuration.Get<ApplicationOptions>();
 
-        /// <summary>
-        /// Create WebHost Builder
-        /// </summary>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            return WebHost.CreateDefaultBuilder(args)
-                .ConfigureMetricsWithDefaults(
-                    builder => builder.OutputMetrics.AsPrometheusPlainText())
-                .UseMetrics(
-                    options =>
-                    {
-                        options.EndpointOptions = endpointsOptions =>
-                        {
-                            endpointsOptions.MetricsTextEndpointOutputFormatter =
-                                new MetricsPrometheusTextOutputFormatter();
-                        };
-                    })
-                .UseStartup<Startup>()
-                .CaptureStartupErrors(true)
-                .UseConfiguration(Configuration);
-        }
+        //    Log.Logger = new LoggerConfiguration()
+        //        .MinimumLevel.Information()
+        //        .WriteTo.Graylog(new GraylogSinkOptions
+        //        {
+        //            HostnameOrAddress = config.Graylog.Host,
+        //            Port = 12201,
+        //        })
+        //        .CreateLogger();
+
+        //    Serilog.Debugging.SelfLog.Enable(msg =>
+        //    {
+        //        Debug.Print(msg);
+        //        Debugger.Break();
+        //    });
+
+        //    try
+        //    {
+        //        Log.Information("Init:CoreDataStore.Web");
+        //        CreateWebHostBuilder(args).Build().Run();
+        //        return 0;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return 1;
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Create WebHost Builder
+        ///// </summary>
+        ///// <param name="args"></param>
+        ///// <returns></returns>
+        //public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        //{
+        //    return WebHost.CreateDefaultBuilder(args)
+        //        .ConfigureMetricsWithDefaults(
+        //            builder => builder.OutputMetrics.AsPrometheusPlainText())
+        //        .UseMetrics(
+        //            options =>
+        //            {
+        //                options.EndpointOptions = endpointsOptions =>
+        //                {
+        //                    endpointsOptions.MetricsTextEndpointOutputFormatter =
+        //                        new MetricsPrometheusTextOutputFormatter();
+        //                };
+        //            })
+        //        .UseStartup<Startup>()
+        //        .CaptureStartupErrors(true)
+        //        .UseConfiguration(Configuration);
+        //}
     }
 }

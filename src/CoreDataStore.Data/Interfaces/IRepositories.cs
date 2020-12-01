@@ -27,7 +27,7 @@ namespace CoreDataStore.Data.Interfaces
     public interface ILpcLamppostRepository : IEntityBaseRepository<LpcLamppost>, IDisposable { }
 
     /// <summary>
-    /// Lpc Lamppost Repository interface
+    /// Pluto Repository interface
     /// </summary>
     public interface IPlutoRepository : IEntityBaseRepository<Pluto>, IDisposable
     {

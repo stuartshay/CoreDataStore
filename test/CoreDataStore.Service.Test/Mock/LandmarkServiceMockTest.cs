@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
-using CoreDataStore.Common.Helpers;
+using AutoMapper;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Domain.Entities;
-using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Service.Test.Data;
 using Moq;
-using Navigator.Common.Helpers;
 using Xunit;
 
 namespace CoreDataStore.Service.Test.Mock
@@ -20,10 +19,9 @@ namespace CoreDataStore.Service.Test.Mock
         public async Task Get_Landmark_Item_Street_List()
         {
             var dataSet = LandmarkDataSource.GetLandmarkList(20);
-            var predicate = PredicateBuilder.True<Landmark>();
 
             var repository = new Mock<ILandmarkRepository>();
-            repository.Setup(b => b.FindByAsync(predicate))
+            repository.Setup(b => b.FindByAsync(It.IsAny<Expression<Func<Landmark, bool>>>()))
                 .ReturnsAsync(dataSet);
 
             var service = GetLandmarkService(repository.Object);
@@ -34,15 +32,17 @@ namespace CoreDataStore.Service.Test.Mock
 
             // Assert
             Assert.NotNull(sut);
+            Assert.Equal(dataSet.Count, sut.Count);
             Assert.IsType<List<string>>(sut);
         }
 
         private LandmarkService GetLandmarkService(ILandmarkRepository landmarkRepository = null)
         {
-            AutoMapperConfiguration.Configure();
+            var config = new MapperConfiguration(cfg => { cfg.AddMaps("CoreDataStore.Service"); });
+            IMapper mapper = new Mapper(config);
 
-            landmarkRepository = landmarkRepository ?? new Mock<ILandmarkRepository>().Object;
-            return new LandmarkService(landmarkRepository);
+            landmarkRepository ??= new Mock<ILandmarkRepository>().Object;
+            return new LandmarkService(landmarkRepository, mapper);
         }
     }
 }

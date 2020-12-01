@@ -7,7 +7,6 @@ using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.ValidationRules;
 using CoreDataStore.Web.Filters;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +16,6 @@ namespace CoreDataStore.Web.Controllers
     /// LPC Reports API Controller.
     /// </summary>
     [Route("api/[controller]")]
-    [EnableCors("AllowAll")]
     public class LpcReportController : Controller
     {
         private readonly ILpcReportService _lpcReportService;

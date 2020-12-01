@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Description>CoreDataStore Common</Description>
     <Authors>$(Authors)</Authors>
     <VersionPrefix>$(VersionPrefix)</VersionPrefix>

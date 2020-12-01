@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
-using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
@@ -19,9 +18,12 @@ namespace CoreDataStore.Service.Services
     {
         private readonly ILandmarkRepository _landmarkRepository;
 
-        public LandmarkService(ILandmarkRepository landmarkRepository)
+        private readonly IMapper _mapper;
+
+        public LandmarkService(ILandmarkRepository landmarkRepository, IMapper mapper)
         {
             _landmarkRepository = landmarkRepository ?? throw new ArgumentNullException(nameof(landmarkRepository));
+            _mapper = mapper;
         }
 
         public List<string> GetLandmarkStreets(string lpcNumber)
@@ -94,8 +96,7 @@ namespace CoreDataStore.Service.Services
             var results = _landmarkRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList);
 
-            var modelData = Mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
-
+            var modelData = _mapper.Map<IEnumerable<Landmark>, IEnumerable<LandmarkModel>>(results).ToList();
             return new PagedResultModel<LandmarkModel>
             {
                 Total = totalCount,

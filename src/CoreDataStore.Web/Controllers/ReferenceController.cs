@@ -4,7 +4,6 @@ using System.Linq;
 using CoreDataStore.Data.Data;
 using CoreDataStore.Domain.Enum;
 using CoreDataStore.Domain.Interfaces;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Navigator.Common.Helpers;
 
@@ -14,7 +13,6 @@ namespace CoreDataStore.Web.Controllers
     /// Reference Data Controller
     /// </summary>
     [Route("api/[controller]")]
-    [EnableCors("AllowAll")]
     public class ReferenceController : Controller
     {
         private readonly IReferenceRepository _referenceRepository;

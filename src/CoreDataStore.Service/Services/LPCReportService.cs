@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using CoreDataStore.Common.Helpers;
 using CoreDataStore.Data.Extensions;
 using CoreDataStore.Data.Filters;
 using CoreDataStore.Data.Interfaces;
@@ -19,9 +18,12 @@ namespace CoreDataStore.Service.Services
     {
         private readonly ILpcReportRepository _lpcReportRepository;
 
-        public LpcReportService(ILpcReportRepository lpcReportRepository)
+        private readonly IMapper _mapper;
+
+        public LpcReportService(ILpcReportRepository lpcReportRepository, IMapper mapper)
         {
             _lpcReportRepository = lpcReportRepository ?? throw new ArgumentNullException(nameof(lpcReportRepository));
+            _mapper = mapper;
         }
 
         public LpcReportModel GetLPCReport(int id)
@@ -29,8 +31,7 @@ namespace CoreDataStore.Service.Services
             Guard.ThrowIfZeroOrLess(id, "Invalid LPC Id");
 
             var query = _lpcReportRepository.GetSingle(id);
-
-            return Mapper.Map<LpcReport, LpcReportModel>(query);
+            return _mapper.Map<LpcReport, LpcReportModel>(query);
         }
 
         public async Task<LpcReportModel> GetLPCReportAsync(int id)
@@ -38,20 +39,20 @@ namespace CoreDataStore.Service.Services
             Guard.ThrowIfZeroOrLess(id, "Invalid LPC Id");
 
             var query = await _lpcReportRepository.GetSingleAsync(id);
-
-            return Mapper.Map<LpcReport, LpcReportModel>(query);
+            return _mapper.Map<LpcReport, LpcReportModel>(query);
         }
 
         public List<LpcReportModel> GetLPCReports()
         {
             var results = _lpcReportRepository.GetAll().ToList();
-            return Mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
+            return _mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
+
         }
 
         public async Task<List<LpcReportModel>> GetLPCReportsAsync()
         {
             var results = await _lpcReportRepository.GetAllAsync();
-            return Mapper.Map<List<LpcReport>, List<LpcReportModel>>(results.ToList());
+            return _mapper.Map<List<LpcReport>, List<LpcReportModel>>(results.ToList());
         }
 
         public LpcReportModel UpdateLPCReport(LpcReportModel model)
@@ -59,13 +60,14 @@ namespace CoreDataStore.Service.Services
             Guard.ThrowIfZeroOrLess(model.Id, "Invalid LPC Id");
 
             var report = _lpcReportRepository.GetSingle(model.Id);
-            Mapper.Map(model, report);
+            _mapper.Map(model, report);
 
             _lpcReportRepository.Edit(report);
             _lpcReportRepository.Commit();
 
             var results = _lpcReportRepository.GetSingle(model.Id);
-            return Mapper.Map<LpcReport, LpcReportModel>(results);
+            return _mapper.Map<LpcReport, LpcReportModel>(results);
+
         }
 
         public PagedResultModel<LpcReportModel> GetLPCReports(LpcReportRequest request)
@@ -94,7 +96,7 @@ namespace CoreDataStore.Service.Services
             var results = _lpcReportRepository
                 .GetPage(predicate, request.PageSize * (request.Page - 1), request.PageSize, sortingList).Include(x => x.LPCLocation);
 
-            var modelData = Mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
+            var modelData = _mapper.Map<IEnumerable<LpcReport>, IEnumerable<LpcReportModel>>(results).ToList();
             return new PagedResultModel<LpcReportModel>
             {
                 Total = totalCount,
@@ -102,6 +104,7 @@ namespace CoreDataStore.Service.Services
                 Limit = request.PageSize,
                 Results = modelData,
             };
+
         }
     }
 }

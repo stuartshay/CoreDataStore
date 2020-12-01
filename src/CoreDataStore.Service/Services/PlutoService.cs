@@ -15,9 +15,11 @@ namespace CoreDataStore.Service.Services
     {
         private readonly IPlutoRepository _plutoRepository;
 
-        public PlutoService(IPlutoRepository plutoRepository)
+        private readonly IMapper _mapper;
+        public PlutoService(IPlutoRepository plutoRepository, IMapper mapper)
         {
             _plutoRepository = plutoRepository ?? throw new ArgumentNullException(nameof(plutoRepository));
+            _mapper = mapper;
         }
 
         public List<PlutoModel> GetPluto(string lpcNumber)
@@ -25,7 +27,7 @@ namespace CoreDataStore.Service.Services
             Guard.ThrowIfNullOrWhitespace(lpcNumber, "LPC Number");
 
             var results = _plutoRepository.GetPluto(lpcNumber);
-            return Mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
+            return _mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
         }
 
         public async Task<List<PlutoModel>> GetPlutoAsync(string lpcNumber)
@@ -33,7 +35,7 @@ namespace CoreDataStore.Service.Services
             Guard.ThrowIfNullOrWhitespace(lpcNumber, "LPC Number");
 
             var results = await _plutoRepository.GetPlutoAsync(lpcNumber);
-            return Mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
+            return _mapper.Map<IEnumerable<Pluto>, IEnumerable<PlutoModel>>(results).ToList();
         }
     }
 }

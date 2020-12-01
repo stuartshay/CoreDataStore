@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CoreDataStore.Service.Interfaces;
 using CoreDataStore.Service.Models;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDataStore.Web.Controllers
@@ -12,7 +11,6 @@ namespace CoreDataStore.Web.Controllers
     /// PLUTO Controller.
     /// </summary>
     [Route("api/[controller]")]
-    [EnableCors("AllowAll")]
     [Produces("application/json")]
     public class PlutoController : Controller
     {

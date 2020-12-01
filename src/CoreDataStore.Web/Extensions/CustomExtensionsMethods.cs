@@ -5,7 +5,7 @@ using CoreDataStore.Data.Postgre;
 using CoreDataStore.Web.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 
 namespace CoreDataStore.Web.Extensions
 {
@@ -41,12 +41,11 @@ namespace CoreDataStore.Web.Extensions
             // Swagger
             services.AddSwaggerGen(options =>
             {
-                options.SwaggerDoc("v1", new Info
+                options.SwaggerDoc("v1",  new OpenApiInfo()
                 {
                     Title = "CoreDataStore.Web",
                     Description = "CoreDataStore.Web",
                     Version = "v1",
-                    TermsOfService = "None",
                 });
                 options.IncludeXmlComments(GetXmlCommentsPath());
             });
@@ -77,7 +76,7 @@ namespace CoreDataStore.Web.Extensions
         private static string GetXmlCommentsPath()
         {
             var basePath = AppContext.BaseDirectory;
-            var assemblyName = Assembly.GetEntryAssembly().GetName().Name;
+            var assemblyName = Assembly.GetEntryAssembly()?.GetName().Name;
             var fileName = Path.GetFileName(assemblyName + ".xml");
 
             return Path.Combine(basePath, fileName);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using CoreDataStore.Data.Interfaces;
 using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Models;
@@ -57,10 +58,11 @@ namespace CoreDataStore.Service.Test.Mock
 
         private PlutoService GetPlutoService(IPlutoRepository plutoRepository = null)
         {
-            AutoMapperConfiguration.Configure();
+            var config = new MapperConfiguration(cfg => { cfg.AddMaps("CoreDataStore.Service"); });
+            IMapper mapper = new Mapper(config);
 
-            plutoRepository = plutoRepository ?? new Mock<IPlutoRepository>().Object;
-            return new PlutoService(plutoRepository);
+            plutoRepository ??= new Mock<IPlutoRepository>().Object;
+            return new PlutoService(plutoRepository, mapper);
         }
     }
 }
