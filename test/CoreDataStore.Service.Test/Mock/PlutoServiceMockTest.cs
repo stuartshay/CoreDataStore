@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using CoreDataStore.Data.Interfaces;
-using CoreDataStore.Service.Mappings;
 using CoreDataStore.Service.Models;
 using CoreDataStore.Service.Services;
 using CoreDataStore.Service.Test.Data;

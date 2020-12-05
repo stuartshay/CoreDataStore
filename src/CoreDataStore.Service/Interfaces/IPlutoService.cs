@@ -22,5 +22,14 @@ namespace CoreDataStore.Service.Interfaces
         /// <param name="lpcNumber">LPC Id</param>
         /// <returns></returns>
         Task<List<PlutoModel>> GetPlutoAsync(string lpcNumber);
+
+
+        /// <summary>
+        /// Get Pluto Async
+        /// </summary>
+        /// <param name="bbl">BBL - UniqueId</param>
+        /// <returns></returns>
+        Task<PlutoModel> GetPlutoAsync(long bbl);
+
     }
 }
