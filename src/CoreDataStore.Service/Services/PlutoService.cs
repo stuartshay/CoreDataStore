@@ -45,5 +45,13 @@ namespace CoreDataStore.Service.Services
 
             return _mapper.Map<Pluto, PlutoModel>(result.FirstOrDefault());
         }
+
+        public async Task<List<PlutoModel>> GetPlutoListAsync(long[] bbl)
+        {
+            Guard.ThrowIfZeroOrLess(bbl.Length, "BBL Number");
+            var result = await _plutoRepository.FindByAsync(x => bbl.Contains(x.BBL));  
+
+            return _mapper.Map<List<Pluto>, List<PlutoModel>>(result.ToList());
+        }
     }
 }

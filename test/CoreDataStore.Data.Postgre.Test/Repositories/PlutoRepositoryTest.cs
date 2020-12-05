@@ -102,5 +102,16 @@ namespace CoreDataStore.Data.Postgre.Test.Repositories
 
             Assert.NotEqual(0, sut);
         }
+
+        [Fact(DisplayName = "Pluto BBL List - Async")]
+        [Trait("Category", "Integration")]
+        public async Task Get_Pluto_BBL_List_Async()
+        {
+            long[] bbl = { 5000140088, 5000140016 };
+
+            var sut = await _plutoRepository.FindByAsync(x => bbl.Contains(x.BBL));
+
+            Assert.NotEmpty(sut);
+        }
     }
 }

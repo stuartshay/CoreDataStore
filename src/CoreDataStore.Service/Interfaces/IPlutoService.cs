@@ -31,5 +31,12 @@ namespace CoreDataStore.Service.Interfaces
         /// <returns></returns>
         Task<PlutoModel> GetPlutoAsync(long bbl);
 
+
+        /// <summary>
+        /// Get Pluto Async
+        /// </summary>
+        /// <param name="bbl">BBL - UniqueId</param>
+        /// <returns></returns>
+        Task<List<PlutoModel>> GetPlutoListAsync(long[] bbl);
     }
 }
