@@ -39,8 +39,6 @@ jobs:
 
 # - npm i selenium-webdriver assert mocha
 # - npm run selenium
-notifications:
-  slack: leduong:8FHnajypcfOykiQS6Hn6QBB5
 
 # travis by gem
 # travis encrypt DOCKER_USERNAME=navigatordatastore DOCKER_PASSWORD=yourPassword --add env.global
